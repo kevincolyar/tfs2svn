@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.Subver
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.TeamFoundationServer", "Colyar.SourceControl.TeamFoundationServer\Colyar.SourceControl.TeamFoundationServer.csproj", "{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.tfs2svn", "tfs2svn\Colyar.SourceControl.tfs2svn.csproj", "{51DEB101-123D-41F8-84B3-F62FE733477F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfs2svn.Console", "tfs2svn.Console\tfs2svn.Console.csproj", "{4D159271-36C4-466E-A735-1EAF54E28F9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfs2svn.Winforms", "tfs2svn.WinForms\tfs2svn.Winforms.csproj", "{3611479C-AD86-4B4A-AF59-82D27D026E7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.Tfs2Svn", "Colyar.SourceControl.Tfs2Svn\Colyar.SourceControl.Tfs2Svn.csproj", "{51DEB101-123D-41F8-84B3-F62FE733477F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,6 @@ Global
 		{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51DEB101-123D-41F8-84B3-F62FE733477F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51DEB101-123D-41F8-84B3-F62FE733477F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51DEB101-123D-41F8-84B3-F62FE733477F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51DEB101-123D-41F8-84B3-F62FE733477F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D159271-36C4-466E-A735-1EAF54E28F9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D159271-36C4-466E-A735-1EAF54E28F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D159271-36C4-466E-A735-1EAF54E28F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,6 +39,10 @@ Global
 		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51DEB101-123D-41F8-84B3-F62FE733477F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51DEB101-123D-41F8-84B3-F62FE733477F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51DEB101-123D-41F8-84B3-F62FE733477F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51DEB101-123D-41F8-84B3-F62FE733477F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

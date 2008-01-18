@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using System.Net;
-using System.Runtime.InteropServices;
-using System.Text;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
 using Colyar.SourceControl;
@@ -304,22 +302,8 @@ namespace Colyar.SourceControl.TeamFoundationServer
         }
         private void DownloadFile(Change change, string path)
         {
-            // The TFS libraries can only download a file to a path that contains
-            // less than 260 characters.  What year is this? Come on.
-            //string fileName = Path.GetFileName(path);
             File.Delete(path);
             change.Item.DownloadFile(path);
-
-            // Delete existing file
-            //DirectoryInfo dirInfo = new DirectoryInfo(Path.GetDirectoryName(path));
-
-            //foreach(FileInfo fileInfo in dirInfo.GetFiles())
-            //    if(fileInfo.Name == filename)
-            //        fileInfo.Delete();
-
-            //FileInfo fileInfo2 = new FileInfo(filename);
-            
-            //File.Move(filename, dirInfo.FullName + "\\" + filename );
         }
 
         #endregion

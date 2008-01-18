@@ -1,8 +1,7 @@
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Xml;
-using Colyar.SourceControl;
+using Colyar.SourceControl.Tfs2Svn;
 
 namespace Colyar.SourceControl
 {
@@ -36,14 +35,14 @@ namespace Colyar.SourceControl
 
         private static void Convert(string tfsPath, string svnPath)
         {
-            tfs2svn tfs2svnConverter = new tfs2svn(tfsPath, svnPath, true);
+            Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter(tfsPath, svnPath, true);
             HookupEventHandlers(tfs2svnConverter);
             tfs2svnConverter.Convert();
         }
 
         private static void Convert(string configPath)
         {
-            tfs2svn tfs2svnConverter = ParseConfigurationFile(configPath);
+            Tfs2SvnConverter tfs2svnConverter = ParseConfigurationFile(configPath);
             HookupEventHandlers(tfs2svnConverter);
             tfs2svnConverter.Convert();
         }
@@ -66,7 +65,7 @@ namespace Colyar.SourceControl
             //Console.WriteLine("Committer: " + committer);
             //Console.WriteLine("Comment  : " + comment);
         }
-        private static void HookupEventHandlers(tfs2svn tfs2svnConverter)
+        private static void HookupEventHandlers(Tfs2SvnConverter tfs2svnConverter)
         {
             tfs2svnConverter.BeginChangeSet += BeginChangeSet;
             tfs2svnConverter.EndChangeSet += EndChangeSet;
@@ -92,14 +91,14 @@ namespace Colyar.SourceControl
             errorLog.WriteLine(output);
             errorLog.WriteLine("----------------------------------------");
         }
-        private static tfs2svn ParseConfigurationFile(string path)
+        private static Tfs2SvnConverter ParseConfigurationFile(string path)
         {
             string fileContents = new StreamReader(path).ReadToEnd();
 
             string svnPath = GetSvnPath(fileContents);
             string tfsPath = GetTfsPath(fileContents);
             bool overwrite = GetOverwriteOption(fileContents);
-            tfs2svn tfs2svnConverter = new tfs2svn(tfsPath, svnPath, overwrite);
+            Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter(tfsPath, svnPath, overwrite);
 
             AddUserMappings(tfs2svnConverter, fileContents);
 
@@ -132,7 +131,7 @@ namespace Colyar.SourceControl
 
             return true;
         }
-        private static void AddUserMappings(tfs2svn tfs2svnConverter, string fileContents)
+        private static void AddUserMappings(Tfs2SvnConverter tfs2svnConverter, string fileContents)
         {
             Regex regex = new Regex(@"(?<usermapping>(usermapping:\s+(?<regex>\w+), (?<username>\w+), (?<password>\w+)))", RegexOptions.IgnoreCase);
 

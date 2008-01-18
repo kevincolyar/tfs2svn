@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
-using Colyar.SourceControl;
+using Colyar.SourceControl.Tfs2Svn;
 
 namespace Colyar.SourceControl
 {
@@ -21,7 +21,7 @@ namespace Colyar.SourceControl
 
         private void DoWork(object obj)
         {
-            tfs2svn tfs2svnConverter = new tfs2svn("https://tfs.dcpud.net/AMMPS", "file:///" + Environment.CurrentDirectory + "/AMMPS", true);
+            Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter("https://tfs.dcpud.net/AMMPS", "file:///" + Environment.CurrentDirectory + "/AMMPS", true);
             tfs2svnConverter.AddUserMapping("kevinc", "kevinc", "password");
             tfs2svnConverter.AddUserMapping("kevinb", "kevinb", "password");
             tfs2svnConverter.AddUserMapping("brianr", "brianr", "password");
@@ -108,7 +108,7 @@ namespace Colyar.SourceControl
                                                             txtOutput.ScrollToCaret();
                                                         }));
         }
-        private void HookupEventHandlers(tfs2svn tfs2svnConverter)
+        private void HookupEventHandlers(Tfs2SvnConverter tfs2svnConverter)
         {
             tfs2svnConverter.BeginChangeSet += BeginChangeSet;
             tfs2svnConverter.EndChangeSet += EndChangeSet;
