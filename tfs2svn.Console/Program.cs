@@ -14,8 +14,8 @@ namespace Colyar.SourceControl
 #if DEBUG
             // Testing (REMOVE FOR RELEASE)---------------
             args = new string[2];
-            args[0] = @"https://tfs.dcpud.net/ACE";
-            args[1] = @"file:///C:/svn/ACE";
+            args[0] = @"https://tfs.dcpud.net/AMMPS";
+            args[1] = @"file:///C:/svn/AMMPS";
             // ------------------------------------------
 #endif
             switch(args.Length)
@@ -166,9 +166,9 @@ namespace Colyar.SourceControl
         {
             Report(changeset, path, committer, comment);
         }
-        static void FileBranched(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
+        static void FileBranched(int changeset, string path, string committer, string comment, DateTime date)
         {
-            Report(changeset, newPath, committer, comment);
+            Report(changeset, path, committer, comment);
         }
         static void FileRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
         {
@@ -182,9 +182,9 @@ namespace Colyar.SourceControl
         {
             Report(changeset, path, committer, comment);
         }
-        static void FolderBranched(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
+        static void FolderBranched(int changeset, string path, string committer, string comment, DateTime date)
         {
-            Report(changeset, newPath, committer, comment);
+            Report(changeset, path, committer, comment);
         }
         static void FolderRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
         {

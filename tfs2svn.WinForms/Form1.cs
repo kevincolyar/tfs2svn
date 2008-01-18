@@ -58,9 +58,9 @@ namespace Colyar.SourceControl
         {
             Report(changeset, path, committer, comment);
         }
-        void FileBranched(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
+        void FileBranched(int changeset, string path, string committer, string comment, DateTime date)
         {
-            Report(changeset, newPath, committer, comment);
+            Report(changeset, path, committer, comment);
         }
         void FileRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
         {
@@ -74,9 +74,9 @@ namespace Colyar.SourceControl
         {
             Report(changeset, path, committer, comment);
         }
-        void FolderBranched(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
+        void FolderBranched(int changeset, string path, string committer, string comment, DateTime date)
         {
-            Report(changeset, newPath, committer, comment);
+            Report(changeset, path, committer, comment);
         }
         void FolderRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
         {

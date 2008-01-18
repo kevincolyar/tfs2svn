@@ -18,7 +18,6 @@ namespace Colyar.SourceControl.Tfs2Svn
         private string _tfsRepository;
         private string _svnRepository;
 
-
         private readonly string _tfsUrlRegex = @"(?<server>https?://([\w+-]\.?)+(:\d+)?)(?<repo>(/[\w- ]+)+)?";
         private readonly string _svnUrlRegex = @"(?<server>(https?|file|svn|svn\+ssh):///?([\w-]+\.?)+)(?<repo>(/[\w-]+)+)?";
 
@@ -97,7 +96,7 @@ namespace Colyar.SourceControl.Tfs2Svn
             add { this._tfsExporter.FileRenamed += value; }
             remove { this._tfsExporter.FileRenamed -= value; }
         }
-        public event DualPathHandler FileBranched
+        public event SinglePathHandler FileBranched
         {
             add { this._tfsExporter.FileBranched += value; }
             remove { this._tfsExporter.FileBranched -= value; }
@@ -117,7 +116,7 @@ namespace Colyar.SourceControl.Tfs2Svn
             add { this._tfsExporter.FolderRenamed += value; }
             remove { this._tfsExporter.FolderRenamed -= value; }
         }
-        public event DualPathHandler FolderBranched
+        public event SinglePathHandler FolderBranched
         {
             add { this._tfsExporter.FolderBranched += value; }
             remove { this._tfsExporter.FolderBranched -= value; }
@@ -235,10 +234,10 @@ namespace Colyar.SourceControl.Tfs2Svn
             if (File.Exists(path))
                 this._svnImporter.Remove(path);
         }
-        void tfsExporter_FileBranched(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
+        void tfsExporter_FileBranched(int changeset, string path, string committer, string comment, DateTime date)
         {
-            if (File.Exists(oldPath) && !File.Exists(newPath))
-                this._svnImporter.Branch(oldPath, newPath);
+            if (File.Exists(path))
+                this._svnImporter.Add(path);
         }
         void tfsExporter_FileRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
         {
@@ -261,10 +260,10 @@ namespace Colyar.SourceControl.Tfs2Svn
             if (Directory.Exists(path))
                 this._svnImporter.Remove(path);
         }
-        void tfsExporter_FolderBranched(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
+        void tfsExporter_FolderBranched(int changeset, string path, string committer, string comment, DateTime date)
         {
-            if (Directory.Exists(oldPath) && !Directory.Exists(newPath))
-                this._svnImporter.Branch(oldPath, newPath);
+            if (Directory.Exists(path))
+                this._svnImporter.Add(path);
         }
         void tfsExporter_FolderRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
         {

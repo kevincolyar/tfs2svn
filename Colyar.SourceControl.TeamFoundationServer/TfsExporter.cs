@@ -19,13 +19,13 @@ namespace Colyar.SourceControl.TeamFoundationServer
         public event SinglePathHandler FileEdited;
         public event SinglePathHandler FileDeleted;
         public event SinglePathHandler FileUndeleted;
+        public event SinglePathHandler FileBranched;
         public event DualPathHandler FileRenamed;
-        public event DualPathHandler FileBranched;
         public event SinglePathHandler FolderAdded;
         public event SinglePathHandler FolderDeleted;
         public event SinglePathHandler FolderUndeleted;
+        public event SinglePathHandler FolderBranched;
         public event DualPathHandler FolderRenamed;
-        public event DualPathHandler FolderBranched;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
         private readonly string _localPath;
         private readonly Microsoft.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
         private readonly VersionControlServer _versionControlServer;
-        private Dictionary<int, string> _itemPaths = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> _itemPaths = new Dictionary<int, string>();
 
         #endregion
 
@@ -126,8 +126,11 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
         private void ProcessChange(Changeset changeset, Change change)
         {
+            // Process file change.
             if (change.Item.ItemType == ItemType.File)
               ProcessFileChange(changeset, change);
+
+            // Process folder change.
             else if (change.Item.ItemType == ItemType.Folder)
                 ProcessFolderChange(changeset, change);
         }
@@ -139,7 +142,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
             // Branch file.
             else if ((change.ChangeType & ChangeType.Branch) == ChangeType.Branch)
-                AddFile(changeset, change);
+                BranchFile(changeset, change);
 
             // Add file.
             else if ((change.ChangeType & ChangeType.Add) == ChangeType.Add)
@@ -165,7 +168,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
             // Branch folder.
             else if ((change.ChangeType & ChangeType.Branch) == ChangeType.Branch)
-                AddFolder(changeset, change);
+                BranchFolder(changeset, change);
 
             // Add folder.
             else if ((change.ChangeType & ChangeType.Add) == ChangeType.Add)
@@ -193,8 +196,6 @@ namespace Colyar.SourceControl.TeamFoundationServer
         private void DeleteFile(Changeset changeset, Change change)
         {
             string itemPath = GetItemPath(change);
-            //File.Delete(itemPath);
-            //this._itemPaths.Remove(change.Item.ItemId);
 
             if (this.FileDeleted != null)
                 this.FileDeleted(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
@@ -224,13 +225,10 @@ namespace Colyar.SourceControl.TeamFoundationServer
             string itemPath = GetItemPath(change);
             DownloadFile(change, itemPath);
 
-            string oldPath = this._itemPaths[change.Item.ItemId];
-            string newPath = itemPath;
-
             this._itemPaths[change.Item.ItemId] = itemPath;
 
             if (this.FileBranched != null)
-                this.FileBranched(changeset.ChangesetId, oldPath, newPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
+                this.FileBranched(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
         private void UndeleteFile(Changeset changeset, Change change)
         {
@@ -264,14 +262,12 @@ namespace Colyar.SourceControl.TeamFoundationServer
         private void BranchFolder(Changeset changeset, Change change)
         {
             string itemPath = GetItemPath(change);
-
-            string oldPath = this._itemPaths[change.Item.ItemId];
-            string newPath = itemPath;
+            Directory.CreateDirectory(itemPath);
 
             this._itemPaths[change.Item.ItemId] = itemPath;
 
             if (this.FolderBranched != null)
-                this.FolderBranched(changeset.ChangesetId, oldPath, newPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
+                this.FolderBranched(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
         private void RenameFolder(Changeset changeset, Change change)
         {

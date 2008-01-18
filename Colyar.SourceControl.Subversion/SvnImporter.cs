@@ -14,9 +14,9 @@ namespace Colyar.SourceControl.Subversion
 
         private string _repositoryPath;
         private string _workingCopyPath;
-        private string _svnPath = @"C:\Program Files\Subversion\bin";
-        private Dictionary<string, byte[]> _passwordHash = new Dictionary<string, byte[]>();
-        private Dictionary<string, string> _usernameMap = new Dictionary<string, string>();
+        private readonly string _svnPath = @"C:\Program Files\Subversion\bin";
+        private readonly Dictionary<string, byte[]> _passwordHash = new Dictionary<string, byte[]>();
+        private readonly Dictionary<string, string> _usernameMap = new Dictionary<string, string>();
 
         #endregion
 
