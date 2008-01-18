@@ -11,12 +11,13 @@ namespace Colyar.SourceControl
 
         static void Main(string[] args)
         {
+#if DEBUG
             // Testing (REMOVE FOR RELEASE)---------------
             args = new string[2];
-            args[0] = @"https://tfs.dcpud.net/AMMPS";
-            args[1] = @"file:///C:/svn/AMMPS";
+            args[0] = @"https://tfs.dcpud.net/ACE";
+            args[1] = @"file:///C:/svn/ACE";
             // ------------------------------------------
-
+#endif
             switch(args.Length)
             {
                 case 1:
