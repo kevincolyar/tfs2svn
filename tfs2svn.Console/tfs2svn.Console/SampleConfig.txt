@@ -1,0 +1,6 @@
+tfspath:		https://tfs.server.net/repo
+svnpath:		file:///C://svn/repo
+overwrite:		false
+tfs_username:	username
+tfs_password:	password
+usermapping:	regex, username, password
