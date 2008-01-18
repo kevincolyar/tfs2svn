@@ -122,7 +122,7 @@ namespace Colyar.SourceControl
             tfs2svnConverter.FolderRenamed += FolderRenamed;
             tfs2svnConverter.FolderBranched += FolderBranched;
 
-            tfs2svnConverter.SvnConsoleOutput += tfs2svnConverter_SvnConsoleOutput;
+            tfs2svnConverter.SubversionConsoleOutput += tfs2svnConverter_SvnConsoleOutput;
         }
 
         #endregion

@@ -68,11 +68,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\tfs2svn.Console\trunk\Colyar.SourceControl\Colyar.SourceControl.csproj">
+    <ProjectReference Include="..\Colyar.SourceControl\Colyar.SourceControl.csproj">
       <Project>{46B5216D-37A6-4B2C-9333-D591EFB4C08E}</Project>
       <Name>Colyar.SourceControl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\tfs2svn.Console\trunk\tfs2svn\Colyar.SourceControl.tfs2svn.csproj">
+    <ProjectReference Include="..\tfs2svn\Colyar.SourceControl.tfs2svn.csproj">
       <Project>{51DEB101-123D-41F8-84B3-F62FE733477F}</Project>
       <Name>Colyar.SourceControl.tfs2svn</Name>
     </ProjectReference>

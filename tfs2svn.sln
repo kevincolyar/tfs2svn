@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfs2svn.Winforms", "tfs2svn.Winforms\tfs2svn.Winforms.csproj", "{3611479C-AD86-4B4A-AF59-82D27D026E7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl", "Colyar.SourceControl\Colyar.SourceControl.csproj", "{46B5216D-37A6-4B2C-9333-D591EFB4C08E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl", "..\..\tfs2svn.Console\trunk\Colyar.SourceControl\Colyar.SourceControl.csproj", "{46B5216D-37A6-4B2C-9333-D591EFB4C08E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.Subversion", "Colyar.SourceControl.Subversion\Colyar.SourceControl.Subversion.csproj", "{AD47F42D-1D9D-4C1A-B216-B82E652DEC5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.Subversion", "..\..\tfs2svn.Console\trunk\Colyar.SourceControl.Subversion\Colyar.SourceControl.Subversion.csproj", "{AD47F42D-1D9D-4C1A-B216-B82E652DEC5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.TeamFoundationServer", "Colyar.SourceControl.TeamFoundationServer\Colyar.SourceControl.TeamFoundationServer.csproj", "{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.TeamFoundationServer", "..\..\tfs2svn.Console\trunk\Colyar.SourceControl.TeamFoundationServer\Colyar.SourceControl.TeamFoundationServer.csproj", "{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.tfs2svn", "tfs2svn\Colyar.SourceControl.tfs2svn.csproj", "{51DEB101-123D-41F8-84B3-F62FE733477F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.tfs2svn", "..\..\tfs2svn.Console\trunk\tfs2svn\Colyar.SourceControl.tfs2svn.csproj", "{51DEB101-123D-41F8-84B3-F62FE733477F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfs2svn.Console", "tfs2svn.Console\tfs2svn.Console.csproj", "{4D159271-36C4-466E-A735-1EAF54E28F9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfs2svn.Winforms", "tfs2svn.WinForms\tfs2svn.Winforms.csproj", "{3611479C-AD86-4B4A-AF59-82D27D026E7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{46B5216D-37A6-4B2C-9333-D591EFB4C08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{46B5216D-37A6-4B2C-9333-D591EFB4C08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46B5216D-37A6-4B2C-9333-D591EFB4C08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +35,14 @@ Global
 		{51DEB101-123D-41F8-84B3-F62FE733477F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51DEB101-123D-41F8-84B3-F62FE733477F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51DEB101-123D-41F8-84B3-F62FE733477F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D159271-36C4-466E-A735-1EAF54E28F9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D159271-36C4-466E-A735-1EAF54E28F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D159271-36C4-466E-A735-1EAF54E28F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D159271-36C4-466E-A735-1EAF54E28F9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3611479C-AD86-4B4A-AF59-82D27D026E7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

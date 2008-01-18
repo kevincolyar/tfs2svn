@@ -28,14 +28,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IKVM.GNU.Classpath, Version=0.30.0.0, Culture=neutral, PublicKeyToken=13235d27fcbfff58">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\IKVM.GNU.Classpath.dll</HintPath>
-    </Reference>
-    <Reference Include="svnjavahl, Version=0.0.0.0, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\svnjavahl.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -43,14 +35,6 @@
   <ItemGroup>
     <Compile Include="SvnImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Component Include="libs\IKVM.GNU.Classpath.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="libs\svnjavahl.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Colyar.SourceControl\Colyar.SourceControl.csproj">

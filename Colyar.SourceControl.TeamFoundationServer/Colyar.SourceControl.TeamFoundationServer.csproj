@@ -45,22 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Component Include="libs\Microsoft.TeamFoundation.Client.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.Common.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.Common.Library.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.VersionControl.Client.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.VersionControl.Common.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.WorkItemTracking.Client.Cache.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStore.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.WorkItemTracking.Client.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.WorkItemTracking.Client.Provision.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.WorkItemTracking.Client.RuleEngine.dll" />
-    <Component Include="libs\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Colyar.SourceControl\Colyar.SourceControl.csproj">
       <Project>{46B5216D-37A6-4B2C-9333-D591EFB4C08E}</Project>
       <Name>Colyar.SourceControl</Name>
