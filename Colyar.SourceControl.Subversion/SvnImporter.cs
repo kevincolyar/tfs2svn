@@ -81,7 +81,9 @@ namespace Colyar.SourceControl.Subversion
             string username = GetUser(committer);
             string password = GetPassword(committer);
             
-            if(message != null) message = message.Replace("\"", "");
+            // escape double-quotes and cleanup crlf in original tfs comment
+            if (message != null) 
+               message = message.Replace("\"", "\"\"").Replace("\r\n", "\n");
 
             string command = "commit \"" + this._workingCopyPath + "\" -m \"" + message + "\"";
 
