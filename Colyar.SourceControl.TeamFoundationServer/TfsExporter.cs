@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using System.Net;
-using Microsoft.TeamFoundation.Client;
-using Microsoft.TeamFoundation.VersionControl.Client;
+using OpenTF.TeamFoundation.Client;
+using OpenTF.TeamFoundation.VersionControl.Client;
 using Colyar.SourceControl;
 
 namespace Colyar.SourceControl.TeamFoundationServer
@@ -34,7 +34,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
         private readonly string _serverUri;
         private readonly string _remotePath;
         private readonly string _localPath;
-        private readonly Microsoft.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
+        private readonly OpenTF.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
         private readonly VersionControlServer _versionControlServer;
         private readonly Dictionary<int, string> _itemPaths = new Dictionary<int, string>();
 
@@ -50,7 +50,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
             NetworkCredential networkCredential = new NetworkCredential(username, password, domain);
 
-            this._teamFoundationServer = new Microsoft.TeamFoundation.Client.TeamFoundationServer(this._serverUri, networkCredential);
+            this._teamFoundationServer = new OpenTF.TeamFoundation.Client.TeamFoundationServer(this._serverUri, networkCredential);
             this._versionControlServer = (VersionControlServer)this._teamFoundationServer.GetService(typeof(VersionControlServer));
         }
         public TfsExporter(string serverUri, string remotePath, string localPath)

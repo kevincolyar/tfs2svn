@@ -19,7 +19,7 @@ namespace Colyar.SourceControl.Tfs2Svn
         private string _svnRepository;
 
         private readonly string _tfsUrlRegex = @"(?<server>https?://([\w+-]\.?)+(:\d+)?)(?<repo>(/[\w- ]+)+)?";
-        private readonly string _svnUrlRegex = @"(?<server>(https?|file|svn|svn\+ssh):///?([\w-]+\.?)+)(?<repo>(/[\w-]+)+)?";
+        //private readonly string _svnUrlRegex = @"(?<server>(https?|file|svn|svn\+ssh):///?([\w-]+\.?)+)(?<repo>(/[\w-]+)+)?";
 
         #endregion
 
