@@ -198,9 +198,9 @@ namespace tfs2svn.Winforms
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(127, 40);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(212, 13);
+            this.label7.Size = new System.Drawing.Size(284, 13);
             this.label7.TabIndex = 19;
-            this.label7.Text = "[Assuming saved SVN Authentication Data]";
+            this.label7.Text = "[Assuming locally saved SVN Authentication for this server]";
             // 
             // tbTFSDomain
             // 

@@ -354,10 +354,9 @@ namespace Colyar.SourceControl.Tfs2Svn
         void tfsExporter_FolderDeleted(int changeset, string path, string committer, string comment, DateTime date)
         {
             log.Info(String.Format("Deleting folder {0}", path));
-            if (Directory.Exists(path))
-            {
+
+            if (Directory.Exists(path) && path != _workingCopyPath) //cannot delete workingcopy root-folder
                 this._svnImporter.Remove(path, true);
-            }
         }
 
         void tfsExporter_FolderBranched(int changeset, string path, string committer, string comment, DateTime date)
