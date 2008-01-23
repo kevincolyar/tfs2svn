@@ -26,6 +26,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
         public event SinglePathHandler FolderUndeleted;
         public event SinglePathHandler FolderBranched;
         public event DualPathHandler FolderRenamed;
+        public event ChangesetsFoundHandler ChangeSetsFound;
 
         #endregion
 
@@ -36,31 +37,34 @@ namespace Colyar.SourceControl.TeamFoundationServer
         private readonly string _localPath;
         private readonly OpenTF.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
         private readonly VersionControlServer _versionControlServer;
-        private readonly Dictionary<int, string> _itemPaths = new Dictionary<int, string>();
+        private readonly int _startingChangeset;
 
         #endregion
 
         #region Public Constructor
 
-        public TfsExporter(string serverUri, string remotePath, string localPath, string username, string password, string domain)
+        public TfsExporter(string serverUri, string remotePath, string localPath, int fromChangeset, string tfsUsername, string tfsPassword, string tfsDomain)
         {
             this._serverUri = serverUri;
             this._remotePath = remotePath;
             this._localPath = localPath;
+            this._startingChangeset = fromChangeset;
 
-            NetworkCredential networkCredential = new NetworkCredential(username, password, domain);
-
-            this._teamFoundationServer = new OpenTF.TeamFoundation.Client.TeamFoundationServer(this._serverUri, networkCredential);
-            this._versionControlServer = (VersionControlServer)this._teamFoundationServer.GetService(typeof(VersionControlServer));
-        }
-        public TfsExporter(string serverUri, string remotePath, string localPath)
-        {
-            this._serverUri = serverUri;
-            this._remotePath = remotePath;
-            this._localPath = localPath;
-
-            this._teamFoundationServer = TeamFoundationServerFactory.GetServer(this._serverUri);
-            this._versionControlServer = (VersionControlServer)this._teamFoundationServer.GetService(typeof(VersionControlServer));
+            try
+            {
+                if (tfsUsername != null)
+                {
+                    NetworkCredential tfsCredential = new NetworkCredential(tfsUsername, tfsPassword, tfsDomain);
+                    this._teamFoundationServer = new OpenTF.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
+                }
+                else
+                    this._teamFoundationServer = TeamFoundationServerFactory.GetServer(this._serverUri);
+                this._versionControlServer = (VersionControlServer)this._teamFoundationServer.GetService(typeof(VersionControlServer));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error connecting to TFS", ex);
+            }
         }
 
         #endregion
@@ -74,7 +78,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
                 if (this.BeginChangeSet != null)
                     this.BeginChangeSet(changeset.ChangesetId, changeset.Committer, changeset.Comment, changeset.CreationDate);
 
-                foreach (Change change in OrderChanges(changeset.Changes))
+                foreach (Change change in changeset.Changes) //OrderChanges(changeset.Changes))
                     ProcessChange(changeset, change);
 
                 if (this.EndChangeSet != null)
@@ -92,37 +96,45 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
             try
             {
-                VersionSpec firstVersion = VersionSpec.ParseSingleSpec("1", this._versionControlServer.AuthenticatedUser);
-                IEnumerable changesets = this._versionControlServer.QueryHistory(this._remotePath, VersionSpec.Latest, 0, RecursionType.Full, null, firstVersion, VersionSpec.Latest, int.MaxValue, true, false);
+                ChangesetVersionSpec versionFrom = new ChangesetVersionSpec(_startingChangeset);
+                IEnumerable changesets = this._versionControlServer.QueryHistory(this._remotePath, VersionSpec.Latest, 0, RecursionType.Full, null, versionFrom, VersionSpec.Latest, int.MaxValue, true, false);
 
+                int count = 0;
                 foreach (Changeset changeset in changesets)
+                {
+                    count++;
                     sortedChangesets.Add(changeset.ChangesetId, changeset);
+                }
+
+                if (this.ChangeSetsFound != null)
+                    this.ChangeSetsFound(count); //notify the number of found changesets (used in progressbar)
              }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                throw new Exception("Error while executing TFS QueryHistory", ex);
             }
 
             return sortedChangesets.Values;
         }
-        private List<Change> OrderChanges(Change[] changes)
-        {
-          List<Change> fileChanges = new List<Change>();
-          List<Change> folderChanges = new List<Change>();
-          List<Change> returnChanges = new List<Change>();
 
-          foreach (Change change in changes)
-          {
-              if (change.Item.ItemType == ItemType.File)
-                  fileChanges.Add(change);
-              else
-                  folderChanges.Add(change);
-          }
+        //private List<Change> OrderChanges(Change[] changes)
+        //{
+        //  List<Change> fileChanges = new List<Change>();
+        //  List<Change> folderChanges = new List<Change>();
+        //  List<Change> returnChanges = new List<Change>();
 
-          returnChanges.AddRange(folderChanges);
-          returnChanges.AddRange(fileChanges);
-          return returnChanges;
-        }
+        //  foreach (Change change in changes)
+        //  {
+        //      if (change.Item.ItemType == ItemType.File)
+        //          fileChanges.Add(change);
+        //      else
+        //          folderChanges.Add(change);
+        //  }
+
+        //  returnChanges.AddRange(folderChanges);
+        //  returnChanges.AddRange(fileChanges);
+        //  return returnChanges;
+        //}
 
         private void ProcessChange(Changeset changeset, Change change)
         {
@@ -136,9 +148,19 @@ namespace Colyar.SourceControl.TeamFoundationServer
         }
         private void ProcessFileChange(Changeset changeset, Change change)
         {
+            // Undelete file (really just an add)
+            if ((change.ChangeType & ChangeType.Undelete) == ChangeType.Undelete)
+                UndeleteFile(changeset, change);
+
             // Rename file.
-            if ((change.ChangeType & ChangeType.Rename) == ChangeType.Rename)
+            else if ((change.ChangeType & ChangeType.Rename) == ChangeType.Rename)
+            {
                 RenameFile(changeset, change);
+
+                //"Edit, Rename" is possible and should be handled 
+                if ((change.ChangeType & ChangeType.Edit) == ChangeType.Edit)
+                    EditFile(changeset, change);
+            }
 
             // Branch file.
             else if ((change.ChangeType & ChangeType.Branch) == ChangeType.Branch)
@@ -155,15 +177,15 @@ namespace Colyar.SourceControl.TeamFoundationServer
             // Edit file.
             else if ((change.ChangeType & ChangeType.Edit) == ChangeType.Edit)
                 EditFile(changeset, change);
-
-            // Undelete file.
-            else if ((change.ChangeType & ChangeType.Undelete) == ChangeType.Undelete)
-                UndeleteFile(changeset, change);
         }
         private void ProcessFolderChange(Changeset changeset, Change change)
         {
+            // Undelete folder.
+            if ((change.ChangeType & ChangeType.Undelete) == ChangeType.Undelete)
+                UndeleteFolder(changeset, change);
+
             // Rename folder.
-            if ((change.ChangeType & ChangeType.Rename) == ChangeType.Rename)
+            else if ((change.ChangeType & ChangeType.Rename) == ChangeType.Rename)
                 RenameFolder(changeset, change);
 
             // Branch folder.
@@ -177,129 +199,134 @@ namespace Colyar.SourceControl.TeamFoundationServer
             // Delete folder.
             else if ((change.ChangeType & ChangeType.Delete) == ChangeType.Delete)
                 DeleteFolder(changeset, change);
-
-            // Undelete folder.
-            else if ((change.ChangeType & ChangeType.Undelete) == ChangeType.Undelete)
-                UndeleteFolder(changeset, change);
         }
 
         private void AddFile(Changeset changeset, Change change)
         {
-            string itemPath = GetItemPath(change);
-            DownloadFile(change, itemPath);
-
-            this._itemPaths[change.Item.ItemId] = itemPath;
+            string itemPath = GetItemPath(change.Item);
+            DownloadItemFile(change, itemPath);
 
             if (this.FileAdded != null)
                 this.FileAdded(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
-        private void DeleteFile(Changeset changeset, Change change)
-        {
-            string itemPath = GetItemPath(change);
 
-            if (this.FileDeleted != null)
-                this.FileDeleted(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
-        }
-        private void EditFile(Changeset changeset, Change change)
-        {
-            string itemPath = GetItemPath(change);
-            DownloadFile(change, itemPath);
-
-            if (this.FileEdited != null)
-                this.FileEdited(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
-        }
-        private void RenameFile(Changeset changeset, Change change)
-        {
-            string itemPath = GetItemPath(change);
-
-            string oldPath = this._itemPaths[change.Item.ItemId];
-            string newPath = itemPath;
-
-            this._itemPaths[change.Item.ItemId] = newPath;
-
-            if (this.FileRenamed != null)
-                this.FileRenamed(changeset.ChangesetId, oldPath, newPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
-        }
         private void BranchFile(Changeset changeset, Change change)
         {
-            string itemPath = GetItemPath(change);
-            DownloadFile(change, itemPath);
-
-            this._itemPaths[change.Item.ItemId] = itemPath;
+            string itemPath = GetItemPath(change.Item);
+            DownloadItemFile(change, itemPath);
 
             if (this.FileBranched != null)
                 this.FileBranched(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
+
         private void UndeleteFile(Changeset changeset, Change change)
         {
-            string itemPath = GetItemPath(change);
-            DownloadFile(change, itemPath);
-
-            this._itemPaths[change.Item.ItemId] = itemPath;
+            string itemPath = GetItemPath(change.Item);
+            DownloadItemFile(change, itemPath);
 
             if (this.FileUndeleted != null)
                 this.FileUndeleted(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
-        
+        }
+
+        private void DeleteFile(Changeset changeset, Change change)
+        {
+            string itemPath = GetItemPath(change.Item);
+
+            if (this.FileDeleted != null)
+                this.FileDeleted(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
+        }
+
+        private void EditFile(Changeset changeset, Change change)
+        {
+            string itemPath = GetItemPath(change.Item);
+            DownloadItemFile(change, itemPath);
+
+            if (this.FileEdited != null)
+                this.FileEdited(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
+        }
+
+        private void DownloadItemFile(Change change, string targetPath)
+        {
+            try
+            {
+                //File.Delete is not needed (this is handled inside DownloadFile)
+                change.Item.DownloadFile(targetPath);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format("Error while downloading file '{0}' in Changeset #{1}.", targetPath, change.Item.ChangesetId), ex);
+            }
+        }
+
+        private void RenameFile(Changeset changeset, Change change)
+        {
+            string oldPath = GetItemPath(GetPreviousItem(change.Item));
+            string newPath = GetItemPath(change.Item);
+
+            if (this.FileRenamed != null)
+                this.FileRenamed(changeset.ChangesetId, oldPath, newPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
 
         private void AddFolder(Changeset changeset, Change change)
         {
-            string itemPath = GetItemPath(change);
+            string itemPath = GetItemPath(change.Item);
             Directory.CreateDirectory(itemPath);
-
-            this._itemPaths[change.Item.ItemId] = itemPath;
 
             if (this.FolderAdded != null)
                 this.FolderAdded(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
-        private void DeleteFolder(Changeset changeset, Change change)
-        {
-            string itemPath = GetItemPath(change);
 
-            if (this.FolderDeleted != null)
-                this.FolderDeleted(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
-        }
         private void BranchFolder(Changeset changeset, Change change)
         {
-            string itemPath = GetItemPath(change);
+            string itemPath = GetItemPath(change.Item);
             Directory.CreateDirectory(itemPath);
-
-            this._itemPaths[change.Item.ItemId] = itemPath;
 
             if (this.FolderBranched != null)
                 this.FolderBranched(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
-        private void RenameFolder(Changeset changeset, Change change)
-        {
-            string itemPath = GetItemPath(change);
 
-            string oldPath = this._itemPaths[change.Item.ItemId];
-            string newPath = itemPath;
-
-            this._itemPaths[change.Item.ItemId] = newPath;
-
-            if (this.FolderRenamed != null)
-                this.FolderRenamed(changeset.ChangesetId, oldPath, newPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
-        }
         private void UndeleteFolder(Changeset changeset, Change change)
         {
-            string itemPath = GetItemPath(change);
+            string itemPath = GetItemPath(change.Item);
             Directory.CreateDirectory(itemPath);
-
-            this._itemPaths[change.Item.ItemId] = itemPath;
 
             if (this.FolderUndeleted != null)
                 this.FolderUndeleted(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
 
-        private string GetItemPath(Change change)
+        private void DeleteFolder(Changeset changeset, Change change)
         {
-            return this._localPath + "" + change.Item.ServerItem.Replace(this._remotePath, "");
+            string itemPath = GetItemPath(change.Item);
+
+            if (this.FolderDeleted != null)
+                this.FolderDeleted(changeset.ChangesetId, itemPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
         }
-        private void DownloadFile(Change change, string path)
+
+        private void RenameFolder(Changeset changeset, Change change)
         {
-            File.Delete(path);
-            change.Item.DownloadFile(path);
+            string oldPath = GetItemPath(GetPreviousItem(change.Item));
+            string newPath = GetItemPath(change.Item);
+
+            if (this.FolderRenamed != null)
+                this.FolderRenamed(changeset.ChangesetId, oldPath, newPath, changeset.Committer, changeset.Comment, changeset.CreationDate);
+        }
+
+        private string GetItemPath(Item item)
+        {
+            return String.Concat(this._localPath, item.ServerItem.Remove(0, this._remotePath.Length).Replace("/", "\\"));
+            //TODO: maybe use System.IO.Path.Combine()
+        }
+
+        private Item GetPreviousItem(Item item)
+        {
+            try
+            {
+                return item.VersionControlServer.GetItem(item.ItemId, item.ChangesetId - 1, false);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while executing GetPreviousItem", ex);
+            }
         }
 
         #endregion

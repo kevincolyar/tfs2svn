@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SvnImporter")]
+[assembly: AssemblyTitle("Colyar.SourceControl.Subversion")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Douglas County PUD")]
-[assembly: AssemblyProduct("SvnImporter")]
-[assembly: AssemblyCopyright("Copyright © Douglas County PUD 2008")]
+[assembly: AssemblyCompany("Tfs2Svn")]
+[assembly: AssemblyProduct("Colyar.SourceControl.Subversion")]
+[assembly: AssemblyCopyright("OpenSource")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -18,9 +18,6 @@ using System.Runtime.InteropServices;
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f1fd8052-7191-4330-ae5f-f00467daaa0e")]
 
 // Version information for an assembly consists of the following four values:
 //

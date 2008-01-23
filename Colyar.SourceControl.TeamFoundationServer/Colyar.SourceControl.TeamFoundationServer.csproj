@@ -7,8 +7,8 @@
     <ProjectGuid>{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TfsExporter</RootNamespace>
-    <AssemblyName>TfsExporter</AssemblyName>
+    <RootNamespace>Colyar.SourceControl.TeamFoundationServer</RootNamespace>
+    <AssemblyName>Colyar.SourceControl.TeamFoundationServer</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

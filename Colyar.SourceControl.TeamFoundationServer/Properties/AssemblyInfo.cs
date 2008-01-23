@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TfsExporter")]
+[assembly: AssemblyTitle("Colyar.SourceControl.TeamFoundationServer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Douglas County PUD")]
-[assembly: AssemblyProduct("TfsExporter")]
-[assembly: AssemblyCopyright("Copyright © Douglas County PUD 2008")]
+[assembly: AssemblyCompany("Tfs2Svn")]
+[assembly: AssemblyProduct("Colyar.SourceControl.TeamFoundationServer")]
+[assembly: AssemblyCopyright("OpenSource")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -18,9 +18,6 @@ using System.Runtime.InteropServices;
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fa525d87-0379-4bec-b940-cf9f696f6b6e")]
 
 // Version information for an assembly consists of the following four values:
 //

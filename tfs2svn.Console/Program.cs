@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Colyar.SourceControl.Tfs2Svn;
 
-namespace Colyar.SourceControl
+namespace tfs2svn.Console
 {
     class Program
     {
@@ -36,7 +36,9 @@ namespace Colyar.SourceControl
 
         private static void Convert(string tfsPath, string svnPath)
         {
-            Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter(tfsPath, svnPath, true);
+            string workingCopyPath = Path.GetTempPath() + "tfs2svn";
+            string svnBinFolder = @"C:\Program Files\Subversion\bin";
+            Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter(tfsPath, svnPath, true, 1, workingCopyPath, svnBinFolder, true);
             HookupEventHandlers(tfs2svnConverter);
             tfs2svnConverter.Convert();
         }
@@ -50,48 +52,20 @@ namespace Colyar.SourceControl
 
         private static void PrintUsage()
         {
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("Usage:");
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine(">tfs2svn tfsPath svnPath");
-            Console.WriteLine("Or");
-            Console.WriteLine(">tfs2svn config.txt");
+            System.Console.WriteLine("--------------------------------------------");
+            System.Console.WriteLine("Usage:");
+            System.Console.WriteLine("--------------------------------------------");
+            System.Console.WriteLine(">tfs2svn tfsPath svnPath");
+            System.Console.WriteLine("Or");
+            System.Console.WriteLine(">tfs2svn config.txt");
         }
 
-        static void Report(int changeset, string path, string committer, string comment)
-        {
-            //Console.WriteLine("------------------------------------------------------------------------");
-            //Console.WriteLine("Changeset: " + changeset);
-            //Console.WriteLine("Path     : " + path);
-            //Console.WriteLine("Committer: " + committer);
-            //Console.WriteLine("Comment  : " + comment);
-        }
         private static void HookupEventHandlers(Tfs2SvnConverter tfs2svnConverter)
         {
             tfs2svnConverter.BeginChangeSet += BeginChangeSet;
             tfs2svnConverter.EndChangeSet += EndChangeSet;
-            tfs2svnConverter.FileAdded += FileAdded;
-            tfs2svnConverter.FileDeleted += FileDeleted;
-            tfs2svnConverter.FileEdited += FileEdited;
-            tfs2svnConverter.FileRenamed += FileRenamed;
-            tfs2svnConverter.FileBranched += FileBranched;
-            tfs2svnConverter.FolderAdded += FolderAdded;
-            tfs2svnConverter.FolderDeleted += FolderDeleted;
-            tfs2svnConverter.FolderRenamed += FolderRenamed;
-            tfs2svnConverter.FolderBranched += FolderBranched;
-
-            tfs2svnConverter.SubversionConsoleOutput += tfs2svnConverter_SvnConsoleOutput;
-            tfs2svnConverter.SubversionCommandError += tfs2svnConverter_SubversionCommandError;
         }
 
-        static void tfs2svnConverter_SubversionCommandError(string input, string output, DateTime dateTime)
-        {
-            errorLog.WriteLine("----------------------------------------");
-            errorLog.WriteLine(dateTime);
-            errorLog.WriteLine(input);
-            errorLog.WriteLine(output);
-            errorLog.WriteLine("----------------------------------------");
-        }
         private static Tfs2SvnConverter ParseConfigurationFile(string path)
         {
             string fileContents = new StreamReader(path).ReadToEnd();
@@ -99,7 +73,9 @@ namespace Colyar.SourceControl
             string svnPath = GetSvnPath(fileContents);
             string tfsPath = GetTfsPath(fileContents);
             bool overwrite = GetOverwriteOption(fileContents);
-            Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter(tfsPath, svnPath, overwrite);
+            string workingCopyPath = Path.GetTempPath() + "tfs2svn";
+            string svnBinFolder = @"C:\Program Files\Subversion\bin";
+            Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter(tfsPath, svnPath, overwrite, 1, workingCopyPath, svnBinFolder, true);
 
             AddUserMappings(tfs2svnConverter, fileContents);
 
@@ -137,9 +113,7 @@ namespace Colyar.SourceControl
             Regex regex = new Regex(@"(?<usermapping>(usermapping:\s+(?<regex>\w+), (?<username>\w+), (?<password>\w+)))", RegexOptions.IgnoreCase);
 
             foreach (Match match in regex.Matches(fileContents))
-                tfs2svnConverter.AddUserMapping(match.Groups["regex"].Value, 
-                                                match.Groups["username"].Value, 
-                                                match.Groups["password"].Value);
+                tfs2svnConverter.AddUsernameMapping(match.Groups["regex"].Value, match.Groups["username"].Value);
         }
 
         #endregion
@@ -148,51 +122,11 @@ namespace Colyar.SourceControl
 
         static void BeginChangeSet(int changeset, string committer, string comment, DateTime date)
         {
-            Console.WriteLine("Begin Changeset: " + changeset);
+            System.Console.WriteLine("Begin Changeset: " + changeset);
         }
         static void EndChangeSet(int changeset, string committer, string comment, DateTime date)
         {
-            Console.WriteLine("End Changeset: " + changeset);
-        }
-        static void FileAdded(int changeset, string path, string committer, string comment, DateTime date)
-        {
-            Report(changeset, path, committer, comment);
-        }
-        static void FileEdited(int changeset, string path, string committer, string comment, DateTime date)
-        {
-            Report(changeset, path, committer, comment);
-        }
-        static void FileDeleted(int changeset, string path, string committer, string comment, DateTime date)
-        {
-            Report(changeset, path, committer, comment);
-        }
-        static void FileBranched(int changeset, string path, string committer, string comment, DateTime date)
-        {
-            Report(changeset, path, committer, comment);
-        }
-        static void FileRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
-        {
-            Report(changeset, newPath, committer, comment);
-        }
-        static void FolderAdded(int changeset, string path, string committer, string comment, DateTime date)
-        {
-            Report(changeset, path, committer, comment);
-        }
-        static void FolderDeleted(int changeset, string path, string committer, string comment, DateTime date)
-        {
-            Report(changeset, path, committer, comment);
-        }
-        static void FolderBranched(int changeset, string path, string committer, string comment, DateTime date)
-        {
-            Report(changeset, path, committer, comment);
-        }
-        static void FolderRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
-        {
-            Report(changeset, newPath, committer, comment);
-        }
-        static void tfs2svnConverter_SvnConsoleOutput(string output)
-        {
-            Console.Write(output);
+            System.Console.WriteLine("End Changeset: " + changeset);
         }
 
         #endregion

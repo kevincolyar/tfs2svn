@@ -5,6 +5,8 @@ using System.Globalization;
 using Colyar.SourceControl;
 using System.Text.RegularExpressions;
 using System.IO;
+using log4net;
+using System.Text;
 
 namespace Colyar.SourceControl.Subversion
 {
@@ -14,9 +16,9 @@ namespace Colyar.SourceControl.Subversion
 
         private string _repositoryPath;
         private string _workingCopyPath;
-        private readonly string _svnPath = @"C:\Program Files\Subversion\bin";
-        private readonly Dictionary<string, byte[]> _passwordHash = new Dictionary<string, byte[]>();
+        private string _svnPath;
         private readonly Dictionary<string, string> _usernameMap = new Dictionary<string, string>();
+        private static readonly ILog log = LogManager.GetLogger(typeof(SvnImporter));
 
         #endregion
 
@@ -34,19 +36,13 @@ namespace Colyar.SourceControl.Subversion
 
         #endregion
 
-        #region Public Events
-
-        public event ConsoleOutputHandler ConsoleOutput;
-        public event SubversionCommandErrorHandler SubversionCommandError;
-
-        #endregion
-
         #region Public Constructor
 
-        public SvnImporter(string repositoryPath, string workingCopyPath)
+        public SvnImporter(string repositoryPath, string workingCopyPath, string svnBinFolder)
         {
             this._repositoryPath = repositoryPath.Replace("\\", "/");
             this._workingCopyPath = workingCopyPath;
+            this._svnPath = svnBinFolder;
         }
 
         #endregion
@@ -74,72 +70,88 @@ namespace Colyar.SourceControl.Subversion
         }
         public void Update()
         {
-            RunSvnCommand("update \"" + this._workingCopyPath + "\"");
+            RunSvnCommand("up \"" + this._workingCopyPath + "\"");
         }
-        public void Commit(string message, string committer)
+        public void Commit(string message, string committer, DateTime commitDate, int changeSet)
         {
-            string username = GetUser(committer);
-            string password = GetPassword(committer);
-            
-            // escape double-quotes and cleanup crlf in original tfs comment
-            if (message != null) 
-               message = message.Replace("\"", "\"\"").Replace("\r\n", "\n");
+            // clean-up message for svn and remove non-ASCII chars
+            if (message != null)
+            {
+                message = message.Replace("\"", "\"\"").Replace("\r\n", "\n");
+                // http://svnbook.red-bean.com/en/1.2/svn.advanced.l10n.html
+                message = Encoding.ASCII.GetString(Encoding.ASCII.GetBytes(message));
+            }
 
-            string command = "commit \"" + this._workingCopyPath + "\" -m \"" + message + "\"";
+            message = String.Format("[TFS Changeset #{0}]\n{1}",
+                changeSet.ToString(CultureInfo.InvariantCulture),
+                message);
 
-            if (username != "") command += " --username " + username;
-            if (password != "") command += " --password " + password;
+            RunSvnCommand(String.Format("commit \"{0}\" -m \"{1}\"",
+                this._workingCopyPath,
+                message));
 
-            RunSvnCommand(command);
+            SetCommitAuthorAndDate(commitDate, committer);
         }
         public void Add(string path)
         {
-            RunSvnCommand("add \"" + path + "\"");
+            if (path != this._workingCopyPath)
+            {
+                RunSvnCommand("add \"" + path + "\"");
+            }
         }
-        public void Remove(string path)
+        public void Remove(string path, bool isFolder)
         {
             RunSvnCommand("rm \"" + path + "\"");
+
+            if (isFolder)
+                RunSvnCommand("up \"" + path + "\"");
         }
-        public void Move(string oldPath, string newPath)
+        public void MoveFile(string oldPath, string newPath, bool isFolder)
         {
             RunSvnCommand("mv \"" + oldPath + "\" \"" + newPath + "\"");
         }
-        public void Branch(string oldPath, string newPath)
+        public void MoveServerSide(string oldPath, string newPath, int changeset, string committer, DateTime commitDate)
         {
-            RunSvnCommand("branch \"" + oldPath + "\" \"" + newPath + "\"");
-        }
-        public void SetCommitDate(string path, DateTime date)
-        {
-            RunSvnCommand(String.Format("propset svn:date --revprop -rHEAD {0} \"{1}\"" , date.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ", CultureInfo.InvariantCulture), path));
-        }
-        
-        public void AddUser(string username, string password)
-        {
-            this._usernameMap[username] = username;
-            this._passwordHash[username] = Convert.FromBase64String(password);
-        }
-        public void AddUserMapping(string regex, string username, string password)
-        {
-            this._usernameMap[regex] = username;
-            this._passwordHash[username] = Convert.FromBase64String(password);
+            string oldUrl = _repositoryPath + ToUrlPath(oldPath.Remove(0, _workingCopyPath.Length));
+            string newUrl = _repositoryPath + ToUrlPath(newPath.Remove(0, _workingCopyPath.Length));
+
+            //when only casing is different, we need a server-side move/rename (because windows is case unsensitive!)
+
+            RunSvnCommand(String.Format("mv \"{0}\" \"{1}\" --message \"[TFS Changeset #{2}]\ntfs2svn: server-side rename\"", oldUrl, newUrl, changeset));
+            Update(); //todo: only update common rootpath of oldPath and newPath?
+
+            SetCommitAuthorAndDate(commitDate, committer);
         }
 
+        public void AddUsernameMapping(string tfsUsername, string svnUsername)
+        {
+            this._usernameMap[tfsUsername] = svnUsername;
+        }
         #endregion
 
         #region Private Methods
 
-        public void AddRevisionPropertyChangeHookFile(string path)
+        private void SetCommitAuthorAndDate(DateTime commitDate, string committer)
         {
-            string hookPath = path + "/hooks/pre-revprop-change.cmd";
+            string username = GetMappedUsername(committer);
 
-            if (File.Exists(hookPath))
-                return;
+            //set time after commit
+            RunSvnCommand(String.Format("propset svn:date --revprop -rHEAD {0} \"{1}\"",
+                commitDate.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ", CultureInfo.InvariantCulture),
+                this._workingCopyPath));
 
-            File.Create(hookPath);
+            RunSvnCommand(String.Format("propset svn:author --revprop -rHEAD {0} \"{1}\"",
+                username,
+                this._workingCopyPath));
         }
-
+        private string ToUrlPath(string path)
+        {
+            return path.Replace("\\", "/");
+        }
         private void RunSvnCommand(string command)
         {
+            log.Info("svn " + command);
+
             Process p = new Process();
             p.StartInfo.FileName = this._svnPath + @"\svn.exe";
             p.StartInfo.Arguments = command;
@@ -151,13 +163,15 @@ namespace Colyar.SourceControl.Subversion
             p.StartInfo.RedirectStandardError = true;
 
             p.Start();
-            ParseSvnProcessOuput(command, p.StandardOutput.ReadToEnd());
-            ParseSvnProcessOuput(command, p.StandardError.ReadToEnd());
+            p.StandardOutput.ReadToEnd(); //read standard output and swallow
+            ParseErrorOuput(command, p.StandardError.ReadToEnd());
             p.WaitForExit();
 
         }
         private void RunSvnAdminCommand(string command)
         {
+            log.Info("svnadmin " + command);
+
             Process p = new Process();
             p.StartInfo.FileName = this._svnPath + @"\svnadmin.exe";
             p.StartInfo.Arguments = command;
@@ -169,50 +183,26 @@ namespace Colyar.SourceControl.Subversion
             p.StartInfo.RedirectStandardError = true;
 
             p.Start();
-            ParseSvnAdminProcessOuput(command, p.StandardOutput.ReadToEnd());
-            ParseSvnAdminProcessOuput(command, p.StandardError.ReadToEnd());
+            p.StandardOutput.ReadToEnd(); //read standard output and swallow
+            ParseErrorOuput(command, p.StandardError.ReadToEnd());
             p.WaitForExit();
         }
 
-        private void ParseSvnProcessOuput(string input, string output)
+        private void ParseErrorOuput(string input, string output)
         {
-            if (Regex.IsMatch(output, "^svn(.exe)?:", RegexOptions.IgnoreCase))
+            if (output != "")
             {
-                if(this.SubversionCommandError != null)
-                    this.SubversionCommandError(input, output, DateTime.Now);
+                throw new Exception(String.Format("svn error when executing 'svn {0}'. Exception: {1}.", input, output));
             }
-
-            if (output != "" && this.ConsoleOutput != null)
-                this.ConsoleOutput(output);
-        }
-        private void ParseSvnAdminProcessOuput(string input, string output)
-        {
-            if (Regex.IsMatch(output, "^svnadmin(.exe)?:", RegexOptions.IgnoreCase))
-            {
-                if (this.SubversionCommandError != null)
-                    this.SubversionCommandError(input, output, DateTime.Now);
-            }
-
-            if (output != "" && this.ConsoleOutput != null)
-                this.ConsoleOutput(output);
         }
 
-        private string GetUser(string committer)
+        private string GetMappedUsername(string committer)
         {
-            foreach (string regex in this._usernameMap.Keys)
-                if (Regex.IsMatch(committer, regex, RegexOptions.IgnoreCase))
-                    return this._usernameMap[regex];
+            foreach (string tfsUsername in _usernameMap.Keys)
+                if (committer.ToLowerInvariant().Contains(tfsUsername.ToLowerInvariant()))
+                    return _usernameMap[tfsUsername];
 
-            return committer;
-        }
-        private string GetPassword(string committer)
-        {
-            string user = GetUser(committer);
-
-            if(this._passwordHash.ContainsKey(user))
-                return Convert.ToBase64String(this._passwordHash[user]);
-            
-            return "";
+            return committer; //no mapping found, return committer's unmapped name
         }
 
         #endregion

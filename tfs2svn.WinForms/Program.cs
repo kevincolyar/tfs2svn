@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Colyar.SourceControl
+namespace tfs2svn.Winforms
 {
     static class Program
     {
@@ -14,7 +14,7 @@ namespace Colyar.SourceControl
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

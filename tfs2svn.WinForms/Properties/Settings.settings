@@ -1,7 +1,37 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="tfs2svn.Winforms.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TFSUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://my-tfs-server:8080/MyProject</Value>
+    </Setting>
+    <Setting Name="SVNUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://my-svn-server:8443/svn/MyProject/trunk</Value>
+    </Setting>
+    <Setting Name="TFSUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WorkingCopyPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">[MyDocuments]\Tfs2SvnWorkingCopy</Value>
+    </Setting>
+    <Setting Name="DoInitialCheckout" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="TFS2SVNUserMappings" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;DEV\dolsthoorn;dion&lt;/string&gt;
+  &lt;string&gt;DEV\kcolyar;kevin&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="FromChangeset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="SvnBinFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\..\..\Colyar.SourceControl.Subversion\libs\svn-win32-1.4.6\bin</Value>
+    </Setting>
+    <Setting Name="TFSDomain" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
 </SettingsFile>
