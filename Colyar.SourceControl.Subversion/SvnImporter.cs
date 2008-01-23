@@ -77,7 +77,7 @@ namespace Colyar.SourceControl.Subversion
             // clean-up message for svn and remove non-ASCII chars
             if (message != null)
             {
-                message = message.Replace("\"", "\"\"").Replace("\r\n", "\n");
+                message = message.Replace("\"", "\\\"").Replace("\r\n", "\n");
                 // http://svnbook.red-bean.com/en/1.2/svn.advanced.l10n.html
                 message = Encoding.ASCII.GetString(Encoding.ASCII.GetBytes(message));
             }

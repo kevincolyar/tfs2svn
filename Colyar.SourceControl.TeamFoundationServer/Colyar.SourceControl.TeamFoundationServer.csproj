@@ -30,11 +30,11 @@
   <ItemGroup>
     <Reference Include="OpenTF.TeamFoundation.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.Client.dll</HintPath>
+      <HintPath>libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.Client.dll</HintPath>
     </Reference>
     <Reference Include="OpenTF.TeamFoundation.VersionControl.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.VersionControl.Client.dll</HintPath>
+      <HintPath>libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.VersionControl.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -49,6 +49,23 @@
       <Project>{46B5216D-37A6-4B2C-9333-D591EFB4C08E}</Project>
       <Name>Colyar.SourceControl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.Client.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.Common.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.VersionControl.Client.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\OpenTF-win32-0.5.2\OpenTF.TeamFoundation.VersionControl.Common.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
