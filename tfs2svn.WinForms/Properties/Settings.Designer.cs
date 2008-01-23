@@ -61,7 +61,7 @@ namespace tfs2svn.Winforms.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("[MyDocuments]\\Tfs2SvnWorkingCopy")]
+        [global::System.Configuration.DefaultSettingValueAttribute("[MyDocuments]\\tfs2svn")]
         public string WorkingCopyPath {
             get {
                 return ((string)(this["WorkingCopyPath"]));

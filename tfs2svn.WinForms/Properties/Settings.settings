@@ -12,7 +12,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="WorkingCopyPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">[MyDocuments]\Tfs2SvnWorkingCopy</Value>
+      <Value Profile="(Default)">[MyDocuments]\tfs2svn</Value>
     </Setting>
     <Setting Name="DoInitialCheckout" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
