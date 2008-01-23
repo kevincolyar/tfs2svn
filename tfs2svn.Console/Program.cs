@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using Colyar.SourceControl.Tfs2Svn;
+using tfs2svn.Console.Properties;
 
 namespace tfs2svn.Console
 {
@@ -37,7 +38,8 @@ namespace tfs2svn.Console
         private static void Convert(string tfsPath, string svnPath)
         {
             string workingCopyPath = Path.GetTempPath() + "tfs2svn";
-            string svnBinFolder = @"C:\Program Files\Subversion\bin";
+            //string svnBinFolder = @"C:\Program Files\Subversion\bin";
+            string svnBinFolder = Settings.Default.SvnBinFolder;
             Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter(tfsPath, svnPath, true, 1, workingCopyPath, svnBinFolder, true);
             HookupEventHandlers(tfs2svnConverter);
             tfs2svnConverter.Convert();
@@ -74,7 +76,8 @@ namespace tfs2svn.Console
             string tfsPath = GetTfsPath(fileContents);
             bool overwrite = GetOverwriteOption(fileContents);
             string workingCopyPath = Path.GetTempPath() + "tfs2svn";
-            string svnBinFolder = @"C:\Program Files\Subversion\bin";
+            //string svnBinFolder = @"C:\Program Files\Subversion\bin";
+            string svnBinFolder = Settings.Default.SvnBinFolder;
             Tfs2SvnConverter tfs2svnConverter = new Tfs2SvnConverter(tfsPath, svnPath, overwrite, 1, workingCopyPath, svnBinFolder, true);
 
             AddUserMappings(tfs2svnConverter, fileContents);
