@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using System.Net;
-using OpenTF.TeamFoundation.Client;
-using OpenTF.TeamFoundation.VersionControl.Client;
+//using OpenTF.TeamFoundation.Client;
+//using OpenTF.TeamFoundation.VersionControl.Client;
+
 using Colyar.SourceControl;
+using Microsoft.TeamFoundation.Client;
+using Microsoft.TeamFoundation.VersionControl.Client;
 
 namespace Colyar.SourceControl.TeamFoundationServer
 {
@@ -35,7 +38,8 @@ namespace Colyar.SourceControl.TeamFoundationServer
         private readonly string _serverUri;
         private readonly string _remotePath;
         private readonly string _localPath;
-        private readonly OpenTF.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
+        //private readonly OpenTF.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
+        private readonly Microsoft.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
         private readonly VersionControlServer _versionControlServer;
         private readonly int _startingChangeset;
 
@@ -55,7 +59,8 @@ namespace Colyar.SourceControl.TeamFoundationServer
                 if (tfsUsername != null)
                 {
                     NetworkCredential tfsCredential = new NetworkCredential(tfsUsername, tfsPassword, tfsDomain);
-                    this._teamFoundationServer = new OpenTF.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
+                    //this._teamFoundationServer = new OpenTF.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
+                    this._teamFoundationServer = new Microsoft.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
                 }
                 else
                     this._teamFoundationServer = TeamFoundationServerFactory.GetServer(this._serverUri);

@@ -274,6 +274,18 @@ namespace Colyar.SourceControl.Tfs2Svn
             return path;
         }
 
+        private bool FileWasMovedWithFolder(string path)
+        {
+            if (path == null)
+                return false;
+
+            foreach (string preRenameFolder in renamedFolders.Keys)
+                if (path.ToLowerInvariant().StartsWith(preRenameFolder.ToLowerInvariant()))
+                    return true;
+
+            return false;
+        }
+
         #endregion
 
         #region Event Handlers
@@ -352,7 +364,13 @@ namespace Colyar.SourceControl.Tfs2Svn
         {
             log.Info(String.Format("tfs2svn: Renaming file {0} to {1}", oldPath, newPath));
 
-            oldPath = FixPreviouslyRenamedFolder(oldPath);
+            if (FileWasMovedWithFolder(oldPath))
+            {
+                log.Info(String.Format("tfs2svn: Ingored renaming file {0} to {1}. File was renamed in a folder move.", oldPath, newPath));
+                return;
+            }
+
+             //oldPath = FixPreviouslyRenamedFolder(oldPath);
 
             if (!File.Exists(oldPath))
                 throw new Exception("File error in tfsExporter_FileRenamed");
@@ -440,11 +458,11 @@ namespace Colyar.SourceControl.Tfs2Svn
 
             oldPath = FixPreviouslyRenamedFolder(oldPath);
 
-            if (!Directory.Exists(oldPath))
-                throw new Exception("Folder error in tfsExporter_FolderRenamed");
-
             if (oldPath == newPath)
                 return; //no need for a rename
+
+            if (!Directory.Exists(oldPath))
+                throw new Exception("Folder error in tfsExporter_FolderRenamed");
 
             //rename to an existing directory is only allowed when the casing of the folder-name was changed 
             if (Directory.Exists(newPath) && oldPath.ToLowerInvariant() != newPath.ToLowerInvariant())

@@ -30,12 +30,16 @@ namespace Colyar.Utils
 
             TimeSpan timespan = DateTime.Now - this._startTime;
 
-            int averageSeconds = (int)timespan.TotalSeconds/this._updateCount;
-            int secondsRemaining = averageSeconds*this._updatesRemaining;
+            double averageSeconds = timespan.TotalSeconds/this._updateCount;
+            double secondsRemaining = averageSeconds * this._updatesRemaining;
 
-            int minutesRemaining = secondsRemaining/60;
-            int hoursRemaining = minutesRemaining/60;
-            int daysRemaining = hoursRemaining/24;
+            double minutesRemaining = secondsRemaining / 60.0;
+            double hoursRemaining = minutesRemaining / 60.0;
+            double daysRemaining = hoursRemaining / 24.0;
+
+            daysRemaining = Math.Round(daysRemaining);
+            hoursRemaining = Math.Round(hoursRemaining);
+            minutesRemaining = Math.Round(minutesRemaining);
 
             if (daysRemaining > 0)
                 return String.Format("About {0} {1} remaining.", daysRemaining, PluralizeIfNeeded("day", daysRemaining)); 
@@ -44,10 +48,10 @@ namespace Colyar.Utils
             if (minutesRemaining > 0)
                 return String.Format("About {0} {1} remaining.", minutesRemaining, PluralizeIfNeeded("minute", minutesRemaining));
 
-            return String.Format("About {0} {1} remaining.", secondsRemaining, PluralizeIfNeeded("second", secondsRemaining)); 
+            return "Less than a minute remaining.";
         }
 
-        private string PluralizeIfNeeded(string word, int count)
+        private string PluralizeIfNeeded(string word, double count)
         {
             if (count == 0 || count > 1)
                 return word.TrimEnd("s".ToCharArray()) + "s";
