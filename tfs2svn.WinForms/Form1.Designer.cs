@@ -28,9 +28,9 @@ namespace tfs2svn.Winforms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("One");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Two");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Three");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("One");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Two");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Three");
             this.button1 = new System.Windows.Forms.Button();
             this.tbTFSUrl = new System.Windows.Forms.TextBox();
             this.tbSVNUrl = new System.Windows.Forms.TextBox();
@@ -54,15 +54,16 @@ namespace tfs2svn.Winforms
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabStatus = new System.Windows.Forms.TabPage();
-            this.tabMovement = new System.Windows.Forms.TabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblTimeRemaining = new System.Windows.Forms.ToolStripStatusLabel();
             this.lstStatus = new System.Windows.Forms.ListBox();
+            this.tabMovement = new System.Windows.Forms.TabPage();
             this.lstMovement = new System.Windows.Forms.ListView();
             this.colType = new System.Windows.Forms.ColumnHeader();
             this.colAction = new System.Windows.Forms.ColumnHeader();
             this.colNewPath = new System.Windows.Forms.ColumnHeader();
             this.colOldPath = new System.Windows.Forms.ColumnHeader();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblTimeRemaining = new System.Windows.Forms.ToolStripStatusLabel();
+            this.colChangeset = new System.Windows.Forms.ColumnHeader();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -302,32 +303,6 @@ namespace tfs2svn.Winforms
             this.tabStatus.Text = "Status";
             this.tabStatus.UseVisualStyleBackColor = true;
             // 
-            // tabMovement
-            // 
-            this.tabMovement.Controls.Add(this.lstMovement);
-            this.tabMovement.Location = new System.Drawing.Point(4, 22);
-            this.tabMovement.Name = "tabMovement";
-            this.tabMovement.Size = new System.Drawing.Size(584, 188);
-            this.tabMovement.TabIndex = 1;
-            this.tabMovement.Text = "Movement";
-            this.tabMovement.UseVisualStyleBackColor = true;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblTimeRemaining});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 497);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(615, 22);
-            this.statusStrip1.TabIndex = 27;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // lblTimeRemaining
-            // 
-            this.lblTimeRemaining.Name = "lblTimeRemaining";
-            this.lblTimeRemaining.Size = new System.Drawing.Size(109, 17);
-            this.lblTimeRemaining.Text = "toolStripStatusLabel1";
-            // 
             // lstStatus
             // 
             this.lstStatus.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -338,20 +313,31 @@ namespace tfs2svn.Winforms
             this.lstStatus.Size = new System.Drawing.Size(578, 173);
             this.lstStatus.TabIndex = 4;
             // 
+            // tabMovement
+            // 
+            this.tabMovement.Controls.Add(this.lstMovement);
+            this.tabMovement.Location = new System.Drawing.Point(4, 22);
+            this.tabMovement.Name = "tabMovement";
+            this.tabMovement.Size = new System.Drawing.Size(584, 188);
+            this.tabMovement.TabIndex = 1;
+            this.tabMovement.Text = "Movement";
+            this.tabMovement.UseVisualStyleBackColor = true;
+            // 
             // lstMovement
             // 
             this.lstMovement.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.lstMovement.AutoArrange = false;
             this.lstMovement.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colChangeset,
             this.colType,
             this.colAction,
             this.colNewPath,
             this.colOldPath});
             this.lstMovement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstMovement.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.lstMovement.Location = new System.Drawing.Point(0, 0);
             this.lstMovement.Name = "lstMovement";
             this.lstMovement.Size = new System.Drawing.Size(584, 188);
@@ -376,6 +362,26 @@ namespace tfs2svn.Winforms
             // 
             this.colOldPath.Text = "Old Path";
             this.colOldPath.Width = 227;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblTimeRemaining});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 497);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(615, 22);
+            this.statusStrip1.TabIndex = 27;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblTimeRemaining
+            // 
+            this.lblTimeRemaining.Name = "lblTimeRemaining";
+            this.lblTimeRemaining.Size = new System.Drawing.Size(0, 17);
+            // 
+            // colChangeset
+            // 
+            this.colChangeset.Text = "Changeset";
+            this.colChangeset.Width = 66;
             // 
             // MainForm
             // 
@@ -439,6 +445,7 @@ namespace tfs2svn.Winforms
         private System.Windows.Forms.ColumnHeader colNewPath;
         private System.Windows.Forms.ColumnHeader colOldPath;
         private System.Windows.Forms.ColumnHeader colType;
+        private System.Windows.Forms.ColumnHeader colChangeset;
     }
 }
 

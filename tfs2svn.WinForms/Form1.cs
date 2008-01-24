@@ -82,43 +82,43 @@ namespace tfs2svn.Winforms
         }
         void tfs2svnConverter_FolderUndeleted(int changeset, string path, string committer, string comment, DateTime date)
         {
-            AddMovementLine("Folder", "Undelete", path, "", Color.Pink);
+            AddMovementLine(changeset, "Folder", "Undelete", path, "", Color.Pink);
         }
         void tfs2svnConverter_FolderRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
         {
-            AddMovementLine("Folder", "Rename", newPath, oldPath, Color.YellowGreen);
+            AddMovementLine(changeset, "Folder", "Rename", newPath, oldPath, Color.YellowGreen);
         }
         void tfs2svnConverter_FolderDeleted(int changeset, string path, string committer, string comment, DateTime date)
         {
-            AddMovementLine("Folder", "Delete", path, "", Color.Red);
+            AddMovementLine(changeset, "Folder", "Delete", path, "", Color.Red);
         }
         void tfs2svnConverter_FolderBranched(int changeset, string path, string committer, string comment, DateTime date)
         {
-            AddMovementLine("Folder", "Branch", path, "", Color.Orange);
+            AddMovementLine(changeset, "Folder", "Branch", path, "", Color.Orange);
         }
         void tfs2svnConverter_FolderAdded(int changeset, string path, string committer, string comment, DateTime date)
         {
-            AddMovementLine("Folder", "Add", path, "", Color.Green);
+            AddMovementLine(changeset, "Folder", "Add", path, "", Color.Green);
         }
         void tfs2svnConverter_FileRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
         {
-            AddMovementLine("File", "Rename", newPath, oldPath, Color.YellowGreen);
+            AddMovementLine(changeset, "File", "Rename", newPath, oldPath, Color.YellowGreen);
         }
         void tfs2svnConverter_FileEdited(int changeset, string path, string committer, string comment, DateTime date)
         {
-            AddMovementLine("File", "Edit", path, "", Color.Blue);
+            AddMovementLine(changeset, "File", "Edit", path, "", Color.Blue);
         }
         void tfs2svnConverter_FileDeleted(int changeset, string path, string committer, string comment, DateTime date)
         {
-            AddMovementLine("File", "Delete", path, "", Color.Red);
+            AddMovementLine(changeset, "File", "Delete", path, "", Color.Red);
         }
         void tfs2svnConverter_FileBranched(int changeset, string path, string committer, string comment, DateTime date)
         {
-            AddMovementLine("File", "Branch", path, "", Color.Orange);
+            AddMovementLine(changeset, "File", "Branch", path, "", Color.Orange);
         }
         void tfs2svnConverter_FileAdded(int changeset, string path, string committer, string comment, DateTime date)
         {
-            AddMovementLine("File", "Add", path, "", Color.Green);
+            AddMovementLine(changeset, "File", "Add", path, "", Color.Green);
         }
 
         private void tbSVNUrl_TextChanged(object sender, EventArgs e)
@@ -158,12 +158,12 @@ namespace tfs2svn.Winforms
             tfs2svnConverter.FolderRenamed +=  tfs2svnConverter_FolderRenamed;
             tfs2svnConverter.FolderUndeleted += tfs2svnConverter_FolderUndeleted;
         }
-        private void AddMovementLine(string type, string action, string newPath, string oldPath, Color color)
+        private void AddMovementLine(int changeset, string type, string action, string newPath, string oldPath, Color color)
         {
             this.BeginInvoke(
                 new MethodInvoker(delegate()
                                       {
-                                          ListViewItem listViewItem = new ListViewItem(new string[] { type, action, newPath, oldPath });
+                                          ListViewItem listViewItem = new ListViewItem(new string[] { changeset.ToString(), type, action, newPath, oldPath });
                                           listViewItem.ForeColor = color;
                                           lstMovement.Items.Add(listViewItem);
                                           lstMovement.Items[lstMovement.Items.Count - 1].EnsureVisible();
