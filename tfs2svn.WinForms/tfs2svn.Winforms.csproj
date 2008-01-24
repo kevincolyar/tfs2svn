@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -80,6 +80,10 @@
     <ProjectReference Include="..\Colyar.SourceControl\Colyar.SourceControl.csproj">
       <Project>{46B5216D-37A6-4B2C-9333-D591EFB4C08E}</Project>
       <Name>Colyar.SourceControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Colyar.Utils\Colyar.Utils.csproj">
+      <Project>{D1DDEB77-290A-4525-9A83-CA8FBD472F4C}</Project>
+      <Name>Colyar.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

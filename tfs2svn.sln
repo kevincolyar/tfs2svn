@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfs2svn.Winforms", "tfs2svn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.Tfs2Svn", "Colyar.SourceControl.Tfs2Svn\Colyar.SourceControl.Tfs2Svn.csproj", "{51DEB101-123D-41F8-84B3-F62FE733477F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.Utils", "Colyar.Utils\Colyar.Utils.csproj", "{D1DDEB77-290A-4525-9A83-CA8FBD472F4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{51DEB101-123D-41F8-84B3-F62FE733477F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51DEB101-123D-41F8-84B3-F62FE733477F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51DEB101-123D-41F8-84B3-F62FE733477F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1DDEB77-290A-4525-9A83-CA8FBD472F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1DDEB77-290A-4525-9A83-CA8FBD472F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1DDEB77-290A-4525-9A83-CA8FBD472F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1DDEB77-290A-4525-9A83-CA8FBD472F4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

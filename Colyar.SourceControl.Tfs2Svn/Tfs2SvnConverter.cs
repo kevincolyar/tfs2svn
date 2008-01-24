@@ -83,7 +83,62 @@ namespace Colyar.SourceControl.Tfs2Svn
             add { this._tfsExporter.EndChangeSet += value; }
             remove { this._tfsExporter.EndChangeSet -= value; }
         }
-        public event SvnAdminEventHandler SvnAdminEvent; 
+        public event SvnAdminEventHandler SvnAdminEvent;
+        public event SinglePathHandler FileAdded
+        {
+            add { this._tfsExporter.FileAdded += value; }
+            remove { this._tfsExporter.FileAdded -= value; }
+        }
+        public event SinglePathHandler FileBranched
+        {
+            add { this._tfsExporter.FileBranched += value; }
+            remove { this._tfsExporter.FileBranched -= value; }
+        }
+        public event SinglePathHandler FileDeleted
+        {
+            add { this._tfsExporter.FileDeleted += value; }
+            remove { this._tfsExporter.FileDeleted -= value; }
+        }
+        public event SinglePathHandler FileEdited
+        {
+            add { this._tfsExporter.FileEdited += value; }
+            remove { this._tfsExporter.FileEdited -= value; }
+        }
+        public event DualPathHandler FileRenamed
+        {
+            add { this._tfsExporter.FileRenamed += value; }
+            remove { this._tfsExporter.FileRenamed -= value; }
+        }
+        public event SinglePathHandler FileUndeleted
+        {
+            add { this._tfsExporter.FileUndeleted += value; }
+            remove { this._tfsExporter.FileUndeleted -= value; }
+        }
+        public event SinglePathHandler FolderAdded
+        {
+            add { this._tfsExporter.FolderAdded += value; }
+            remove { this._tfsExporter.FolderAdded -= value; }
+        }
+        public event SinglePathHandler FolderBranched
+        {
+            add { this._tfsExporter.FolderBranched += value; }
+            remove { this._tfsExporter.FolderBranched -= value; }
+        }
+        public event SinglePathHandler FolderDeleted
+        {
+            add { this._tfsExporter.FolderDeleted += value; }
+            remove { this._tfsExporter.FolderDeleted -= value; }
+        }
+        public event DualPathHandler FolderRenamed
+        {
+            add { this._tfsExporter.FolderRenamed += value; }
+            remove { this._tfsExporter.FolderRenamed -= value; }
+        }
+        public event SinglePathHandler FolderUndeleted
+        {
+            add { this._tfsExporter.FolderUndeleted += value; }
+            remove { this._tfsExporter.FolderUndeleted -= value; }
+        }
 
         #endregion
 
