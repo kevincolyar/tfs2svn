@@ -458,11 +458,11 @@ namespace Colyar.SourceControl.Tfs2Svn
 
             oldPath = FixPreviouslyRenamedFolder(oldPath);
 
-            if (oldPath == newPath)
-                return; //no need for a rename
-
             if (!Directory.Exists(oldPath))
                 throw new Exception("Folder error in tfsExporter_FolderRenamed");
+
+            if (oldPath == newPath)
+                return; //no need for a rename
 
             //rename to an existing directory is only allowed when the casing of the folder-name was changed 
             if (Directory.Exists(newPath) && oldPath.ToLowerInvariant() != newPath.ToLowerInvariant())
