@@ -364,16 +364,20 @@ namespace Colyar.SourceControl.Tfs2Svn
         {
             log.Info(String.Format("tfs2svn: Renaming file {0} to {1}", oldPath, newPath));
 
-            //if (FileWasMovedWithFolder(oldPath))
-            //{
-            //    log.Info(String.Format("tfs2svn: Ingored renaming file {0} to {1}. File was renamed in a folder move.", oldPath, newPath));
-            //    return;
-            //}
-
             oldPath = FixPreviouslyRenamedFolder(oldPath);
+
+            if (oldPath == newPath)
+                return; //no need for a rename
+
+            if (!File.Exists(oldPath) && FileWasMovedWithFolder(oldPath))
+            {
+                log.Info(String.Format("tfs2svn: Ingored renaming file {0} to {1}. File was renamed in a folder move.", oldPath, newPath));
+                return;
+            }
 
             if (!File.Exists(oldPath))
                 throw new Exception("File error in tfsExporter_FileRenamed");
+            
 
             if (!File.Exists(newPath))
             {

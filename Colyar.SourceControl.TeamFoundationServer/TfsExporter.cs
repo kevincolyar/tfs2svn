@@ -318,7 +318,11 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
         private string GetItemPath(Item item)
         {
-            return String.Concat(this._localPath, item.ServerItem.Remove(0, this._remotePath.Length).Replace("/", "\\"));
+            if(!item.ServerItem.StartsWith(this._remotePath))
+                throw new Exception(item.ServerItem + " is not contained in " + this._remotePath);
+
+            return this._localPath + item.ServerItem.Replace(this._remotePath, "").Replace("/", "\\");
+            //return String.Concat(this._localPath, item.ServerItem.Remove(0, this._remotePath.Length).Replace("/", "\\"));
             //TODO: maybe use System.IO.Path.Combine()
         }
 

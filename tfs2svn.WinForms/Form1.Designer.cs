@@ -394,6 +394,7 @@ namespace tfs2svn.Winforms
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
+            this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(623, 338);
             this.Name = "MainForm";
             this.Text = "tfs2svn 0.1 [WinForms client]";

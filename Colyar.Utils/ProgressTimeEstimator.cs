@@ -10,17 +10,17 @@ namespace Colyar.Utils
         private DateTime _lastTimeMark;
         private int _updateCount;
         private int _updatesRemaining;
+        private int _totalUpdates;
 
         public ProgressTimeEstimator(DateTime startTime, int totalUpdates)
         {
             this._startTime = startTime;
-            this._updatesRemaining = totalUpdates;
+            this._totalUpdates = totalUpdates;
         }
 
         public void Update()
         {
             ++this._updateCount;
-            --this._updatesRemaining;
         }
 
         public string GetApproxTimeRemaining()
@@ -28,10 +28,14 @@ namespace Colyar.Utils
             if (this._updateCount == 0)
                 return "Calculating...";
 
+            if (this._updateCount == this._totalUpdates)
+                return "Done.";
+
             TimeSpan timespan = DateTime.Now - this._startTime;
+            int updatesRemaining = this._totalUpdates - this._updateCount;
 
             double averageSeconds = timespan.TotalSeconds/this._updateCount;
-            double secondsRemaining = averageSeconds * this._updatesRemaining;
+            double secondsRemaining = averageSeconds * updatesRemaining;
 
             double minutesRemaining = secondsRemaining / 60.0;
             double hoursRemaining = minutesRemaining / 60.0;
