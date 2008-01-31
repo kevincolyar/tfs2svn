@@ -127,6 +127,11 @@ namespace Colyar.SourceControl.Tfs2Svn
             add { TfsClient.Provider.FolderUndeleted += value; }
             remove { TfsClient.Provider.FolderUndeleted -= value; }
         }
+        public event SvnCommandRetryHandler SvnAuthenticationRetry
+        {
+            add { this._svnImporter.AuthenticationRetry += value; }
+            remove { this._svnImporter.AuthenticationRetry -= value; }
+        }
 
         #endregion
 

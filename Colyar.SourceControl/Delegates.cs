@@ -9,6 +9,7 @@ namespace Colyar.SourceControl
     public delegate void DualPathHandler(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date);
     public delegate void ChangesetsFoundHandler(int numberOfChangesetsFound);
     public delegate void SvnAdminEventHandler(string message);
+    public delegate void SvnCommandRetryHandler(string command, int retryCount);
 
     #endregion
 }

@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using log4net;
 using System.Text;
+using System.Threading;
 
 namespace Colyar.SourceControl.Subversion
 {
@@ -46,6 +47,8 @@ namespace Colyar.SourceControl.Subversion
         }
 
         #endregion
+
+        public SvnCommandRetryHandler AuthenticationRetry;
 
         #region Public Methods
 
@@ -148,7 +151,13 @@ namespace Colyar.SourceControl.Subversion
         {
             return path.Replace("\\", "/");
         }
+
         private void RunSvnCommand(string command)
+        {
+            RunSvnCommand(command, 10);
+        }
+
+        private void RunSvnCommand(string command, int retryCount)
         {
             log.Info("svn " + command);
 
@@ -164,7 +173,7 @@ namespace Colyar.SourceControl.Subversion
 
             p.Start();
             p.StandardOutput.ReadToEnd(); //read standard output and swallow
-            ParseErrorOuput(command, p.StandardError.ReadToEnd());
+            ParseSvnOuput(command, p.StandardError.ReadToEnd(), retryCount);
             p.WaitForExit();
 
         }
@@ -184,16 +193,46 @@ namespace Colyar.SourceControl.Subversion
 
             p.Start();
             p.StandardOutput.ReadToEnd(); //read standard output and swallow
-            ParseErrorOuput(command, p.StandardError.ReadToEnd());
+            ParseSvnAdminOuput(command, p.StandardError.ReadToEnd());
             p.WaitForExit();
         }
 
-        private void ParseErrorOuput(string input, string output)
+        private void ParseSvnOuput(string input, string output, int retryCount)
+        {
+            if (output != "")
+            {
+                if (output.Contains("authorization failed") && retryCount != 0)
+                {
+                    log.Warn(String.Format("svn error when executing 'svn {0}'. Exception: {1}. Trying again.", input, output));
+
+                    if (this.AuthenticationRetry != null)
+                        this.AuthenticationRetry(output, retryCount);
+
+                    Thread.Sleep(1000);
+                    RetrySvnCommand(input, retryCount);
+                }
+
+                throw new Exception(String.Format("svn error when executing 'svn {0}'. Exception: {1}.", input, output));
+            }
+        }
+
+        private void ParseSvnAdminOuput(string input, string output)
         {
             if (output != "")
             {
                 throw new Exception(String.Format("svn error when executing 'svn {0}'. Exception: {1}.", input, output));
             }
+        }
+
+        private void RetrySvnCommand(string command, int retryCount)
+        {
+            if(retryCount == 0)
+            {
+                throw new Exception(String.Format("svn command failed. 'svn {0}'", command));
+            }
+
+            --retryCount;
+            RunSvnCommand(command, retryCount);
         }
 
         private string GetMappedUsername(string committer)

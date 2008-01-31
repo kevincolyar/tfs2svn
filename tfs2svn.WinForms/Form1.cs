@@ -120,6 +120,10 @@ namespace tfs2svn.Winforms
         {
             AddMovementLine(changeset, "File", "Add", path, "", Color.Green);
         }
+        void tfs2svnConverter_SvnAuthenticationRetry(string command, int retryCount)
+        {
+            AddMovementLine(-1, "Authentication failed! Retrying...", "", "", "", Color.DarkRed);
+        }
 
         private void tbSVNUrl_TextChanged(object sender, EventArgs e)
         {
@@ -157,7 +161,10 @@ namespace tfs2svn.Winforms
             tfs2svnConverter.FolderDeleted +=  tfs2svnConverter_FolderDeleted;
             tfs2svnConverter.FolderRenamed +=  tfs2svnConverter_FolderRenamed;
             tfs2svnConverter.FolderUndeleted += tfs2svnConverter_FolderUndeleted;
+            tfs2svnConverter.SvnAuthenticationRetry += tfs2svnConverter_SvnAuthenticationRetry;
         }
+
+        
         private void AddMovementLine(int changeset, string type, string action, string newPath, string oldPath, Color color)
         {
             this.BeginInvoke(
