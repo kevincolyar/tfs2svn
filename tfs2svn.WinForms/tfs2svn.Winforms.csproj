@@ -33,6 +33,7 @@
       <HintPath>..\libs\log4net-1.2.10\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -73,6 +74,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Colyar.SourceControl.TeamFoundationServer\Colyar.SourceControl.TeamFoundationServer.csproj">
+      <Project>{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}</Project>
+      <Name>Colyar.SourceControl.TeamFoundationServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Colyar.SourceControl.Tfs2Svn\Colyar.SourceControl.Tfs2Svn.csproj">
       <Project>{51DEB101-123D-41F8-84B3-F62FE733477F}</Project>
       <Name>Colyar.SourceControl.Tfs2Svn</Name>

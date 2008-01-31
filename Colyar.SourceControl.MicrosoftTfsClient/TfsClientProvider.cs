@@ -53,19 +53,30 @@ namespace Colyar.SourceControl.MicrosoftTfsClient
 
             try
             {
-                if (tfsUsername != null)
-                {
-                    NetworkCredential tfsCredential = new NetworkCredential(tfsUsername, tfsPassword, tfsDomain);
-                    this._teamFoundationServer = new Microsoft.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
-                }
-                else
-                    this._teamFoundationServer = TeamFoundationServerFactory.GetServer(this._serverUri);
+                NetworkCredential tfsCredential = new NetworkCredential(tfsUsername, tfsPassword, tfsDomain);
+                this._teamFoundationServer = new Microsoft.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
                 this._versionControlServer = (VersionControlServer)this._teamFoundationServer.GetService(typeof(VersionControlServer));
             }
             catch (Exception ex)
             {
                 throw new Exception("Error connecting to TFS", ex);
             }
+
+            //clear hooked eventhandlers
+            BeginChangeSet = null;
+            EndChangeSet = null;
+            FileAdded = null;
+            FileEdited = null; 
+            FileDeleted = null;
+            FileUndeleted = null;
+            FileBranched = null;
+            FileRenamed = null;
+            FolderAdded = null;
+            FolderDeleted = null;
+            FolderUndeleted= null;
+            FolderBranched = null;
+            FolderRenamed = null;
+            ChangeSetsFound = null;
         }
 
         public override void ProcessAllChangeSets()

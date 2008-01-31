@@ -24,6 +24,26 @@ namespace Colyar.SourceControl.TeamFoundationServer
             }
         }
 
+        public static TfsClientProviderCollection Providers
+        {
+            get
+            {
+                // Make sure the providers is loaded
+                LoadProviders();
+
+                return _providers;
+            }
+        }
+
+        public static void SetProvider(string providerName)
+        {
+            // Make sure the providers is loaded
+            LoadProviders();
+
+            if (_providers != null && _providers[providerName] != null)
+                _provider = _providers[providerName];
+        }
+
         private static void LoadProviders()
         {
             // Avoid claiming lock if providers are already loaded
@@ -44,6 +64,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
                         ProvidersHelper.InstantiateProviders
                             (section.Providers, _providers, typeof(TfsClientProviderBase));
+
                         _provider = _providers[section.DefaultProvider];
 
                         if (_provider == null)

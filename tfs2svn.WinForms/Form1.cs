@@ -9,7 +9,7 @@ using log4net;
 using tfs2svn.Winforms.Properties;
 using log4net.Config;
 using System.Collections.Specialized;
-
+using Colyar.SourceControl.TeamFoundationServer;
 
 namespace tfs2svn.Winforms
 {
@@ -31,6 +31,23 @@ namespace tfs2svn.Winforms
             tbChangesetStart.Text = Settings.Default.FromChangeset.ToString();
             tbWorkingCopyFolder.Text = Settings.Default.WorkingCopyPath;
             cbDoInitialCheckout.Checked = Settings.Default.DoInitialCheckout;
+
+            if (TfsClient.Providers != null)
+            {
+                foreach (TfsClientProviderBase tfsProvider in TfsClient.Providers)
+                {
+                    comboTfsClientProvider.Items.Insert(0, tfsProvider.Name);
+                }
+
+                for (int i = 0; i < comboTfsClientProvider.Items.Count; i++)
+                {
+                    if ((string)comboTfsClientProvider.Items[i] == (String.IsNullOrEmpty(Settings.Default.TFSClientProvider) ? TfsClient.Provider.Name : Settings.Default.TFSClientProvider))
+                    {
+                        comboTfsClientProvider.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
 
             //init log4net
             XmlConfigurator.Configure();
@@ -75,10 +92,7 @@ namespace tfs2svn.Winforms
                 new MethodInvoker(delegate() { AppendListboxText(" done"); progressBar1.Value++; }));
 
             this.BeginInvoke(
-                new MethodInvoker(delegate()
-                                      {
-                                          lblTimeRemaining.Text = _progressTimeEstimator.GetApproxTimeRemaining();
-                                      }));
+                new MethodInvoker(delegate() { lblTimeRemaining.Text = _progressTimeEstimator.GetApproxTimeRemaining(); }));
         }
         void tfs2svnConverter_FolderUndeleted(int changeset, string path, string committer, string comment, DateTime date)
         {
@@ -241,6 +255,15 @@ namespace tfs2svn.Winforms
             lstStatus.Items[lstStatus.Items.Count - 1] = lstStatus.Items[lstStatus.Items.Count - 1] + message;
         }
 
+        private void comboTfsClientProvider_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //set the choosen tfsclient provider
+            string selectedProvideName = (string)comboTfsClientProvider.SelectedItem;
+            TfsClient.SetProvider(selectedProvideName);
+
+            Settings.Default.TFSClientProvider = selectedProvideName;
+            Settings.Default.Save();
+        }
         #endregion
 
     }

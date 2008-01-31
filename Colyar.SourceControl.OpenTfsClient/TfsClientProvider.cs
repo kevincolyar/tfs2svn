@@ -53,13 +53,8 @@ namespace Colyar.SourceControl.OpenTfsClient
 
             try
             {
-                if (tfsUsername != null)
-                {
-                    NetworkCredential tfsCredential = new NetworkCredential(tfsUsername, tfsPassword, tfsDomain);
-                    this._teamFoundationServer = new Microsoft.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
-                }
-                else
-                    this._teamFoundationServer = TeamFoundationServerFactory.GetServer(this._serverUri);
+                NetworkCredential tfsCredential = new NetworkCredential(tfsUsername, tfsPassword, tfsDomain);
+                this._teamFoundationServer = new Microsoft.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
                 this._versionControlServer = (VersionControlServer)this._teamFoundationServer.GetService(typeof(VersionControlServer));
             }
             catch (Exception ex)

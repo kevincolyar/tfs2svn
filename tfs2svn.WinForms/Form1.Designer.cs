@@ -28,9 +28,9 @@ namespace tfs2svn.Winforms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("One");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Two");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Three");
+            System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem("One");
+            System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem("Two");
+            System.Windows.Forms.ListViewItem listViewItem39 = new System.Windows.Forms.ListViewItem("Three");
             this.button1 = new System.Windows.Forms.Button();
             this.tbTFSUrl = new System.Windows.Forms.TextBox();
             this.tbSVNUrl = new System.Windows.Forms.TextBox();
@@ -64,6 +64,10 @@ namespace tfs2svn.Winforms
             this.colOldPath = new System.Windows.Forms.ColumnHeader();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblTimeRemaining = new System.Windows.Forms.ToolStripStatusLabel();
+            this.comboTfsClientProvider = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -75,7 +79,7 @@ namespace tfs2svn.Winforms
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(666, 239);
+            this.button1.Location = new System.Drawing.Point(666, 269);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -100,7 +104,7 @@ namespace tfs2svn.Winforms
             // 
             // tbChangesetStart
             // 
-            this.tbChangesetStart.Location = new System.Drawing.Point(130, 75);
+            this.tbChangesetStart.Location = new System.Drawing.Point(130, 107);
             this.tbChangesetStart.Name = "tbChangesetStart";
             this.tbChangesetStart.Size = new System.Drawing.Size(123, 20);
             this.tbChangesetStart.TabIndex = 7;
@@ -109,7 +113,7 @@ namespace tfs2svn.Winforms
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(12, 498);
+            this.progressBar1.Location = new System.Drawing.Point(12, 549);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(729, 23);
             this.progressBar1.TabIndex = 8;
@@ -135,11 +139,11 @@ namespace tfs2svn.Winforms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 78);
+            this.label3.Location = new System.Drawing.Point(22, 110);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 13);
+            this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Start on Changeset#";
+            this.label3.Text = "Start at Changeset#";
             // 
             // cbDoInitialCheckout
             // 
@@ -171,14 +175,14 @@ namespace tfs2svn.Winforms
             // 
             // tbTFSUsername
             // 
-            this.tbTFSUsername.Location = new System.Drawing.Point(130, 49);
+            this.tbTFSUsername.Location = new System.Drawing.Point(130, 51);
             this.tbTFSUsername.Name = "tbTFSUsername";
             this.tbTFSUsername.Size = new System.Drawing.Size(123, 20);
             this.tbTFSUsername.TabIndex = 15;
             // 
             // tbTFSPassword
             // 
-            this.tbTFSPassword.Location = new System.Drawing.Point(318, 49);
+            this.tbTFSPassword.Location = new System.Drawing.Point(318, 51);
             this.tbTFSPassword.Name = "tbTFSPassword";
             this.tbTFSPassword.Size = new System.Drawing.Size(100, 20);
             this.tbTFSPassword.TabIndex = 16;
@@ -187,7 +191,7 @@ namespace tfs2svn.Winforms
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 52);
+            this.label5.Location = new System.Drawing.Point(46, 54);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 13);
             this.label5.TabIndex = 17;
@@ -196,7 +200,7 @@ namespace tfs2svn.Winforms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(259, 52);
+            this.label6.Location = new System.Drawing.Point(259, 54);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 18;
@@ -207,13 +211,13 @@ namespace tfs2svn.Winforms
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(127, 40);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(284, 13);
+            this.label7.Size = new System.Drawing.Size(310, 13);
             this.label7.TabIndex = 19;
-            this.label7.Text = "[Assuming locally saved SVN Authentication for this server]";
+            this.label7.Text = "Note: Assuming locally saved SVN Authentication for this server.";
             // 
             // tbTFSDomain
             // 
-            this.tbTFSDomain.Location = new System.Drawing.Point(473, 49);
+            this.tbTFSDomain.Location = new System.Drawing.Point(473, 51);
             this.tbTFSDomain.Name = "tbTFSDomain";
             this.tbTFSDomain.Size = new System.Drawing.Size(100, 20);
             this.tbTFSDomain.TabIndex = 20;
@@ -221,7 +225,7 @@ namespace tfs2svn.Winforms
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(424, 52);
+            this.label8.Location = new System.Drawing.Point(424, 54);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 13);
             this.label8.TabIndex = 21;
@@ -244,6 +248,10 @@ namespace tfs2svn.Winforms
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.comboTfsClientProvider);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tbTFSUrl);
             this.groupBox1.Controls.Add(this.label8);
@@ -256,7 +264,7 @@ namespace tfs2svn.Winforms
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(729, 106);
+            this.groupBox1.Size = new System.Drawing.Size(729, 136);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TFS source settings";
@@ -272,7 +280,7 @@ namespace tfs2svn.Winforms
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.tbWorkingCopyFolder);
-            this.groupBox2.Location = new System.Drawing.Point(12, 124);
+            this.groupBox2.Location = new System.Drawing.Point(12, 154);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(729, 100);
             this.groupBox2.TabIndex = 24;
@@ -286,10 +294,10 @@ namespace tfs2svn.Winforms
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabStatus);
             this.tabControl1.Controls.Add(this.tabDetails);
-            this.tabControl1.Location = new System.Drawing.Point(12, 251);
+            this.tabControl1.Location = new System.Drawing.Point(12, 290);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(729, 241);
+            this.tabControl1.Size = new System.Drawing.Size(729, 253);
             this.tabControl1.TabIndex = 26;
             // 
             // tabStatus
@@ -298,7 +306,7 @@ namespace tfs2svn.Winforms
             this.tabStatus.Location = new System.Drawing.Point(4, 22);
             this.tabStatus.Name = "tabStatus";
             this.tabStatus.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStatus.Size = new System.Drawing.Size(721, 215);
+            this.tabStatus.Size = new System.Drawing.Size(721, 227);
             this.tabStatus.TabIndex = 0;
             this.tabStatus.Text = "Status";
             this.tabStatus.UseVisualStyleBackColor = true;
@@ -310,7 +318,7 @@ namespace tfs2svn.Winforms
             this.lstStatus.Location = new System.Drawing.Point(3, 3);
             this.lstStatus.Name = "lstStatus";
             this.lstStatus.ScrollAlwaysVisible = true;
-            this.lstStatus.Size = new System.Drawing.Size(715, 199);
+            this.lstStatus.Size = new System.Drawing.Size(715, 212);
             this.lstStatus.TabIndex = 4;
             // 
             // tabDetails
@@ -335,9 +343,9 @@ namespace tfs2svn.Winforms
             this.colOldPath});
             this.lstMovement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstMovement.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
+            listViewItem37,
+            listViewItem38,
+            listViewItem39});
             this.lstMovement.Location = new System.Drawing.Point(0, 0);
             this.lstMovement.Name = "lstMovement";
             this.lstMovement.Size = new System.Drawing.Size(721, 215);
@@ -372,7 +380,7 @@ namespace tfs2svn.Winforms
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblTimeRemaining});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 524);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 575);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(752, 22);
             this.statusStrip1.TabIndex = 27;
@@ -383,11 +391,50 @@ namespace tfs2svn.Winforms
             this.lblTimeRemaining.Name = "lblTimeRemaining";
             this.lblTimeRemaining.Size = new System.Drawing.Size(0, 17);
             // 
+            // comboTfsClientProvider
+            // 
+            this.comboTfsClientProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTfsClientProvider.FormattingEnabled = true;
+            this.comboTfsClientProvider.Location = new System.Drawing.Point(130, 79);
+            this.comboTfsClientProvider.Name = "comboTfsClientProvider";
+            this.comboTfsClientProvider.Size = new System.Drawing.Size(123, 21);
+            this.comboTfsClientProvider.TabIndex = 22;
+            this.comboTfsClientProvider.SelectedIndexChanged += new System.EventHandler(this.comboTfsClientProvider_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(38, 83);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 13);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "TFS Client library";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(259, 110);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(401, 13);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Note: Starting at Changeset# greater than 1 is suitable for incremental updates o" +
+                "nly!";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(259, 83);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(432, 13);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Note: OpenTF libs are included. To use Microsoft\'s libs you\'ll need Team Explorer" +
+                " installed.";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 546);
+            this.ClientSize = new System.Drawing.Size(752, 597);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -447,6 +494,10 @@ namespace tfs2svn.Winforms
         private System.Windows.Forms.ColumnHeader colOldPath;
         private System.Windows.Forms.ColumnHeader colType;
         private System.Windows.Forms.ColumnHeader colChangeset;
+        private System.Windows.Forms.ComboBox comboTfsClientProvider;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
 

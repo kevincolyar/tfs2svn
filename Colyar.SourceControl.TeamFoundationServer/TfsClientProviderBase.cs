@@ -54,8 +54,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
         }
 
         [StringValidator(MinLength = 1)]
-        [ConfigurationProperty("defaultProvider",
-           DefaultValue = "OpenTfsClientProvider")]
+        [ConfigurationProperty("defaultProvider", DefaultValue = "OpenTF")]
         public string DefaultProvider
         {
             get { return (string)base["defaultProvider"]; }
