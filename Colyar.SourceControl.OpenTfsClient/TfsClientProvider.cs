@@ -61,6 +61,22 @@ namespace Colyar.SourceControl.OpenTfsClient
             {
                 throw new Exception("Error connecting to TFS", ex);
             }
+
+            //clear hooked eventhandlers
+            BeginChangeSet = null;
+            EndChangeSet = null;
+            FileAdded = null;
+            FileEdited = null;
+            FileDeleted = null;
+            FileUndeleted = null;
+            FileBranched = null;
+            FileRenamed = null;
+            FolderAdded = null;
+            FolderDeleted = null;
+            FolderUndeleted = null;
+            FolderBranched = null;
+            FolderRenamed = null;
+            ChangeSetsFound = null;
         }
 
         public override void ProcessAllChangeSets()
