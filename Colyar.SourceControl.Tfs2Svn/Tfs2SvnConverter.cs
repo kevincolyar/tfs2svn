@@ -13,7 +13,7 @@ namespace Colyar.SourceControl.Tfs2Svn
     {
         #region Private Variables
         
-        private readonly TfsExporter _tfsExporter;
+        //private readonly TfsExporter _tfsExporter;
         private readonly SvnImporter _svnImporter;
         private static readonly ILog log = LogManager.GetLogger(typeof(Tfs2SvnConverter));
 
@@ -41,7 +41,9 @@ namespace Colyar.SourceControl.Tfs2Svn
         {
             ParsePaths(tfsPath, svnPath);
 
-            this._tfsExporter = new TfsExporter(this._tfsServer, this._tfsRepository, workingCopyPath, fromChangeset, tfsUsername, tfsPassword, tfsDomain);
+            //this._tfsExporter = new TfsExporter(this._tfsServer, this._tfsRepository, workingCopyPath, fromChangeset, tfsUsername, tfsPassword, tfsDomain);
+            TfsClient.Provider.Connect(this._tfsServer, this._tfsRepository, workingCopyPath, fromChangeset, tfsUsername, tfsPassword, tfsDomain);
+
             this._svnImporter = new SvnImporter(this._svnRepository, workingCopyPath, svnBinFolder);
             _createSvnFileRepository = createSvnFileRepository;
             _doInitialCheckout = doInitialCheckout;
@@ -52,92 +54,78 @@ namespace Colyar.SourceControl.Tfs2Svn
 
         #endregion
 
-        #region Public Properties
-
-        public TfsExporter TfsExporter
-        {
-            get { return this._tfsExporter; }
-        }
-
-        public SvnImporter SvnExporter
-        {
-            get { return this._svnImporter; }
-        }
-
-        #endregion
-
         #region Public Property Events
 
         public event ChangesetHandler BeginChangeSet
         {
-            add { this._tfsExporter.BeginChangeSet += value; }
-            remove { this._tfsExporter.BeginChangeSet -= value; }
+            add { TfsClient.Provider.BeginChangeSet += value; }
+            remove { TfsClient.Provider.BeginChangeSet -= value; }
         }
         public event ChangesetsFoundHandler ChangeSetsFound
         {
-            add { this._tfsExporter.ChangeSetsFound += value; }
-            remove { this._tfsExporter.ChangeSetsFound -= value; }
+            add { TfsClient.Provider.ChangeSetsFound += value; }
+            remove { TfsClient.Provider.ChangeSetsFound -= value; }
         }
         public event ChangesetHandler EndChangeSet
         {
-            add { this._tfsExporter.EndChangeSet += value; }
-            remove { this._tfsExporter.EndChangeSet -= value; }
+            add { TfsClient.Provider.EndChangeSet += value; }
+            remove { TfsClient.Provider.EndChangeSet -= value; }
         }
         public event SvnAdminEventHandler SvnAdminEvent;
         public event SinglePathHandler FileAdded
         {
-            add { this._tfsExporter.FileAdded += value; }
-            remove { this._tfsExporter.FileAdded -= value; }
+            add { TfsClient.Provider.FileAdded += value; }
+            remove { TfsClient.Provider.FileAdded -= value; }
         }
         public event SinglePathHandler FileBranched
         {
-            add { this._tfsExporter.FileBranched += value; }
-            remove { this._tfsExporter.FileBranched -= value; }
+            add { TfsClient.Provider.FileBranched += value; }
+            remove { TfsClient.Provider.FileBranched -= value; }
         }
         public event SinglePathHandler FileDeleted
         {
-            add { this._tfsExporter.FileDeleted += value; }
-            remove { this._tfsExporter.FileDeleted -= value; }
+            add { TfsClient.Provider.FileDeleted += value; }
+            remove { TfsClient.Provider.FileDeleted -= value; }
         }
         public event SinglePathHandler FileEdited
         {
-            add { this._tfsExporter.FileEdited += value; }
-            remove { this._tfsExporter.FileEdited -= value; }
+            add { TfsClient.Provider.FileEdited += value; }
+            remove { TfsClient.Provider.FileEdited -= value; }
         }
         public event DualPathHandler FileRenamed
         {
-            add { this._tfsExporter.FileRenamed += value; }
-            remove { this._tfsExporter.FileRenamed -= value; }
+            add { TfsClient.Provider.FileRenamed += value; }
+            remove { TfsClient.Provider.FileRenamed -= value; }
         }
         public event SinglePathHandler FileUndeleted
         {
-            add { this._tfsExporter.FileUndeleted += value; }
-            remove { this._tfsExporter.FileUndeleted -= value; }
+            add { TfsClient.Provider.FileUndeleted += value; }
+            remove { TfsClient.Provider.FileUndeleted -= value; }
         }
         public event SinglePathHandler FolderAdded
         {
-            add { this._tfsExporter.FolderAdded += value; }
-            remove { this._tfsExporter.FolderAdded -= value; }
+            add { TfsClient.Provider.FolderAdded += value; }
+            remove { TfsClient.Provider.FolderAdded -= value; }
         }
         public event SinglePathHandler FolderBranched
         {
-            add { this._tfsExporter.FolderBranched += value; }
-            remove { this._tfsExporter.FolderBranched -= value; }
+            add { TfsClient.Provider.FolderBranched += value; }
+            remove { TfsClient.Provider.FolderBranched -= value; }
         }
         public event SinglePathHandler FolderDeleted
         {
-            add { this._tfsExporter.FolderDeleted += value; }
-            remove { this._tfsExporter.FolderDeleted -= value; }
+            add { TfsClient.Provider.FolderDeleted += value; }
+            remove { TfsClient.Provider.FolderDeleted -= value; }
         }
         public event DualPathHandler FolderRenamed
         {
-            add { this._tfsExporter.FolderRenamed += value; }
-            remove { this._tfsExporter.FolderRenamed -= value; }
+            add { TfsClient.Provider.FolderRenamed += value; }
+            remove { TfsClient.Provider.FolderRenamed -= value; }
         }
         public event SinglePathHandler FolderUndeleted
         {
-            add { this._tfsExporter.FolderUndeleted += value; }
-            remove { this._tfsExporter.FolderUndeleted -= value; }
+            add { TfsClient.Provider.FolderUndeleted += value; }
+            remove { TfsClient.Provider.FolderUndeleted -= value; }
         }
 
         #endregion
@@ -181,7 +169,7 @@ namespace Colyar.SourceControl.Tfs2Svn
             }
 
             //now read and process all TFS changesets
-            this._tfsExporter.ProcessAllChangeSets();
+            TfsClient.Provider.ProcessAllChangeSets();
         }
         public void AddUsernameMapping(string tfsUsername, string svnUsername)
         {
@@ -194,19 +182,19 @@ namespace Colyar.SourceControl.Tfs2Svn
 
         private void HookupTfsExporterEventHandlers()
         {
-            this._tfsExporter.BeginChangeSet += tfsExporter_BeginChangeSet;
-            this._tfsExporter.EndChangeSet += tfsExporter_EndChangeSet;
-            this._tfsExporter.FileAdded += tfsExporter_FileAdded;
-            this._tfsExporter.FileDeleted += tfsExporter_FileDeleted;
-            this._tfsExporter.FileEdited += tfsExporter_FileEdited;
-            this._tfsExporter.FileRenamed += tfsExporter_FileRenamed;
-            this._tfsExporter.FileBranched += tfsExporter_FileBranched;
-            this._tfsExporter.FileUndeleted += tfsExporter_FileUndeleted;
-            this._tfsExporter.FolderAdded += tfsExporter_FolderAdded;
-            this._tfsExporter.FolderDeleted += tfsExporter_FolderDeleted;
-            this._tfsExporter.FolderRenamed += tfsExporter_FolderRenamed;
-            this._tfsExporter.FolderBranched += tfsExporter_FolderBranched;
-            this._tfsExporter.FolderUndeleted += tfsExporter_FolderUndeleted;
+            TfsClient.Provider.BeginChangeSet += tfsExporter_BeginChangeSet;
+            TfsClient.Provider.EndChangeSet += tfsExporter_EndChangeSet;
+            TfsClient.Provider.FileAdded += tfsExporter_FileAdded;
+            TfsClient.Provider.FileDeleted += tfsExporter_FileDeleted;
+            TfsClient.Provider.FileEdited += tfsExporter_FileEdited;
+            TfsClient.Provider.FileRenamed += tfsExporter_FileRenamed;
+            TfsClient.Provider.FileBranched += tfsExporter_FileBranched;
+            TfsClient.Provider.FileUndeleted += tfsExporter_FileUndeleted;
+            TfsClient.Provider.FolderAdded += tfsExporter_FolderAdded;
+            TfsClient.Provider.FolderDeleted += tfsExporter_FolderDeleted;
+            TfsClient.Provider.FolderRenamed += tfsExporter_FolderRenamed;
+            TfsClient.Provider.FolderBranched += tfsExporter_FolderBranched;
+            TfsClient.Provider.FolderUndeleted += tfsExporter_FolderUndeleted;
         }
 
         private void ParsePaths(string tfsPath, string svnPath)

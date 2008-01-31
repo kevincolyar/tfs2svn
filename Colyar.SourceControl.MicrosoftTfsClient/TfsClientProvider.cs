@@ -3,51 +3,48 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using System.Net;
-//using OpenTF.TeamFoundation.Client;
-//using OpenTF.TeamFoundation.VersionControl.Client;
-
 using Colyar.SourceControl;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
+using Colyar.SourceControl.TeamFoundationServer;
 
-namespace Colyar.SourceControl.TeamFoundationServer
+namespace Colyar.SourceControl.MicrosoftTfsClient
 {
-    public class TfsExporter
+    public class TfsClientProvider : TfsClientProviderBase
     {
         #region Public Events
 
-        public event ChangesetHandler BeginChangeSet;
-        public event ChangesetHandler EndChangeSet;
-        public event SinglePathHandler FileAdded;
-        public event SinglePathHandler FileEdited;
-        public event SinglePathHandler FileDeleted;
-        public event SinglePathHandler FileUndeleted;
-        public event SinglePathHandler FileBranched;
-        public event DualPathHandler FileRenamed;
-        public event SinglePathHandler FolderAdded;
-        public event SinglePathHandler FolderDeleted;
-        public event SinglePathHandler FolderUndeleted;
-        public event SinglePathHandler FolderBranched;
-        public event DualPathHandler FolderRenamed;
-        public event ChangesetsFoundHandler ChangeSetsFound;
+        public override event ChangesetHandler BeginChangeSet;
+        public override event ChangesetHandler EndChangeSet;
+        public override event SinglePathHandler FileAdded;
+        public override event SinglePathHandler FileEdited;
+        public override event SinglePathHandler FileDeleted;
+        public override event SinglePathHandler FileUndeleted;
+        public override event SinglePathHandler FileBranched;
+        public override event DualPathHandler FileRenamed;
+        public override event SinglePathHandler FolderAdded;
+        public override event SinglePathHandler FolderDeleted;
+        public override event SinglePathHandler FolderUndeleted;
+        public override event SinglePathHandler FolderBranched;
+        public override event DualPathHandler FolderRenamed;
+        public override event ChangesetsFoundHandler ChangeSetsFound;
 
         #endregion
 
         #region Private Variables
 
-        private readonly string _serverUri;
-        private readonly string _remotePath;
-        private readonly string _localPath;
-        //private readonly OpenTF.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
-        private readonly Microsoft.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
-        private readonly VersionControlServer _versionControlServer;
-        private readonly int _startingChangeset;
+        private string _serverUri;
+        private string _remotePath;
+        private string _localPath;
+        private Microsoft.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
+        private VersionControlServer _versionControlServer;
+        private int _startingChangeset;
 
         #endregion
 
-        #region Public Constructor
+        #region Public Methods
 
-        public TfsExporter(string serverUri, string remotePath, string localPath, int fromChangeset, string tfsUsername, string tfsPassword, string tfsDomain)
+        public override void Connect(string serverUri, string remotePath, string localPath, int fromChangeset, string tfsUsername, string tfsPassword, string tfsDomain)
         {
             this._serverUri = serverUri;
             this._remotePath = remotePath;
@@ -59,7 +56,6 @@ namespace Colyar.SourceControl.TeamFoundationServer
                 if (tfsUsername != null)
                 {
                     NetworkCredential tfsCredential = new NetworkCredential(tfsUsername, tfsPassword, tfsDomain);
-                    //this._teamFoundationServer = new OpenTF.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
                     this._teamFoundationServer = new Microsoft.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
                 }
                 else
@@ -72,12 +68,11 @@ namespace Colyar.SourceControl.TeamFoundationServer
             }
         }
 
-        #endregion
-
-        #region Public Methods
-
-        public void ProcessAllChangeSets()
+        public override void ProcessAllChangeSets()
         {
+            if (this._teamFoundationServer == null)
+                throw new ArgumentException("Cannot call ProcessAllChangeSets() without Connecting first");
+
             foreach (Changeset changeset in GetChangesets())
             {
                 if (this.BeginChangeSet != null)
@@ -113,7 +108,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
                 if (this.ChangeSetsFound != null)
                     this.ChangeSetsFound(count); //notify the number of found changesets (used in progressbar)
-             }
+            }
             catch (Exception ex)
             {
                 throw new Exception("Error while executing TFS QueryHistory", ex);
@@ -122,35 +117,17 @@ namespace Colyar.SourceControl.TeamFoundationServer
             return sortedChangesets.Values;
         }
 
-        //private List<Change> OrderChanges(Change[] changes)
-        //{
-        //  List<Change> fileChanges = new List<Change>();
-        //  List<Change> folderChanges = new List<Change>();
-        //  List<Change> returnChanges = new List<Change>();
-
-        //  foreach (Change change in changes)
-        //  {
-        //      if (change.Item.ItemType == ItemType.File)
-        //          fileChanges.Add(change);
-        //      else
-        //          folderChanges.Add(change);
-        //  }
-
-        //  returnChanges.AddRange(folderChanges);
-        //  returnChanges.AddRange(fileChanges);
-        //  return returnChanges;
-        //}
-
         private void ProcessChange(Changeset changeset, Change change)
         {
             // Process file change.
             if (change.Item.ItemType == ItemType.File)
-              ProcessFileChange(changeset, change);
+                ProcessFileChange(changeset, change);
 
-            // Process folder change.
+              // Process folder change.
             else if (change.Item.ItemType == ItemType.Folder)
                 ProcessFolderChange(changeset, change);
         }
+
         private void ProcessFileChange(Changeset changeset, Change change)
         {
             // Undelete file (really just an add)
@@ -183,6 +160,7 @@ namespace Colyar.SourceControl.TeamFoundationServer
             else if ((change.ChangeType & ChangeType.Edit) == ChangeType.Edit)
                 EditFile(changeset, change);
         }
+
         private void ProcessFolderChange(Changeset changeset, Change change)
         {
             // Undelete folder.
@@ -318,11 +296,11 @@ namespace Colyar.SourceControl.TeamFoundationServer
 
         private string GetItemPath(Item item)
         {
-            if(!item.ServerItem.StartsWith(this._remotePath))
+            if (!item.ServerItem.ToLowerInvariant().StartsWith(this._remotePath.ToLowerInvariant()))
                 throw new Exception(item.ServerItem + " is not contained in " + this._remotePath);
 
-            return this._localPath + item.ServerItem.Replace(this._remotePath, "").Replace("/", "\\");
-            //return String.Concat(this._localPath, item.ServerItem.Remove(0, this._remotePath.Length).Replace("/", "\\"));
+            return String.Concat(this._localPath, item.ServerItem.Remove(0, this._remotePath.Length).Replace("/", "\\"));
+            //return this._localPath + item.ServerItem.Replace(this._remotePath, "").Replace("/", "\\");
             //TODO: maybe use System.IO.Path.Combine()
         }
 

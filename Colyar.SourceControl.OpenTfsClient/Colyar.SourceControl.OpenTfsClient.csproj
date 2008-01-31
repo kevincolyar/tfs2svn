@@ -4,17 +4,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{51DEB101-123D-41F8-84B3-F62FE733477F}</ProjectGuid>
+    <ProjectGuid>{D0D426BC-A098-422D-BB13-22D82088A74A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>tfs2svn</RootNamespace>
-    <AssemblyName>tfs2svn</AssemblyName>
+    <RootNamespace>Colyar.SourceControl.OpenTfsClient</RootNamespace>
+    <AssemblyName>Colyar.SourceControl.OpenTfsClient</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\tfs2svn.Winforms\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -22,30 +22,24 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\tfs2svn.Winforms\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\log4net-1.2.10\log4net.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TfsClientProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tfs2SvnConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Colyar.SourceControl.Subversion\Colyar.SourceControl.Subversion.csproj">
-      <Project>{AD47F42D-1D9D-4C1A-B216-B82E652DEC5E}</Project>
-      <Name>Colyar.SourceControl.Subversion</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Colyar.SourceControl.TeamFoundationServer\Colyar.SourceControl.TeamFoundationServer.csproj">
       <Project>{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}</Project>
       <Name>Colyar.SourceControl.TeamFoundationServer</Name>
@@ -54,6 +48,13 @@
       <Project>{46B5216D-37A6-4B2C-9333-D591EFB4C08E}</Project>
       <Name>Colyar.SourceControl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.Client.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.Common.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.VersionControl.Client.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.VersionControl.Common.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
