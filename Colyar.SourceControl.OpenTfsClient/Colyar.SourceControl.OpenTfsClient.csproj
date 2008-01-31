@@ -28,8 +28,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.TeamFoundation.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.TeamFoundation.VersionControl.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="OpenTF.TeamFoundation.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="OpenTF.TeamFoundation.VersionControl.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -50,11 +50,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.Client.dll" />
-    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.Common.dll" />
-    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.dll" />
-    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.VersionControl.Client.dll" />
-    <Content Include="libs\OpenTF-win32-0.5.2a\Microsoft.TeamFoundation.VersionControl.Common.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\OpenTF.TeamFoundation.Client.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\OpenTF.TeamFoundation.Common.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\OpenTF.TeamFoundation.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\OpenTF.TeamFoundation.VersionControl.Client.dll" />
+    <Content Include="libs\OpenTF-win32-0.5.2a\OpenTF.TeamFoundation.VersionControl.Common.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

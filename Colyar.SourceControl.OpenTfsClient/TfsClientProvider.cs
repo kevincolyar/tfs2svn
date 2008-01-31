@@ -4,8 +4,8 @@ using System.IO;
 using System.Collections;
 using System.Net;
 using Colyar.SourceControl;
-using Microsoft.TeamFoundation.Client;
-using Microsoft.TeamFoundation.VersionControl.Client;
+using OpenTF.TeamFoundation.Client;
+using OpenTF.TeamFoundation.VersionControl.Client;
 using Colyar.SourceControl.TeamFoundationServer;
 
 namespace Colyar.SourceControl.OpenTfsClient
@@ -36,7 +36,7 @@ namespace Colyar.SourceControl.OpenTfsClient
         private string _serverUri;
         private string _remotePath;
         private string _localPath;
-        private Microsoft.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
+        private OpenTF.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
         private VersionControlServer _versionControlServer;
         private int _startingChangeset;
 
@@ -54,7 +54,7 @@ namespace Colyar.SourceControl.OpenTfsClient
             try
             {
                 NetworkCredential tfsCredential = new NetworkCredential(tfsUsername, tfsPassword, tfsDomain);
-                this._teamFoundationServer = new Microsoft.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
+                this._teamFoundationServer = new OpenTF.TeamFoundation.Client.TeamFoundationServer(this._serverUri, tfsCredential);
                 this._versionControlServer = (VersionControlServer)this._teamFoundationServer.GetService(typeof(VersionControlServer));
             }
             catch (Exception ex)
