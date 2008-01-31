@@ -10,6 +10,7 @@ using tfs2svn.Winforms.Properties;
 using log4net.Config;
 using System.Collections.Specialized;
 using Colyar.SourceControl.TeamFoundationServer;
+using System.Collections.Generic;
 
 namespace tfs2svn.Winforms
 {
@@ -31,22 +32,18 @@ namespace tfs2svn.Winforms
             tbChangesetStart.Text = Settings.Default.FromChangeset.ToString();
             tbWorkingCopyFolder.Text = Settings.Default.WorkingCopyPath;
             cbDoInitialCheckout.Checked = Settings.Default.DoInitialCheckout;
-
+            
             if (TfsClient.Providers != null)
             {
+                if (TfsClient.Providers[Settings.Default.TFSClientProvider] == null)
+                    Settings.Default.TFSClientProvider = "";
+
                 foreach (TfsClientProviderBase tfsProvider in TfsClient.Providers)
-                {
-                    comboTfsClientProvider.Items.Insert(0, tfsProvider.Name);
-                }
+                    comboTfsClientProvider.Items.Add(new NameDescriptionPair(tfsProvider.Name, tfsProvider.Description));
 
                 for (int i = 0; i < comboTfsClientProvider.Items.Count; i++)
-                {
-                    if ((string)comboTfsClientProvider.Items[i] == (String.IsNullOrEmpty(Settings.Default.TFSClientProvider) ? TfsClient.Provider.Name : Settings.Default.TFSClientProvider))
-                    {
+                    if (((NameDescriptionPair)comboTfsClientProvider.Items[i]).Name == (Settings.Default.TFSClientProvider == "" ? TfsClient.Provider.Name : Settings.Default.TFSClientProvider))
                         comboTfsClientProvider.SelectedIndex = i;
-                        break;
-                    }
-                }
             }
 
             //init log4net
@@ -258,7 +255,7 @@ namespace tfs2svn.Winforms
         private void comboTfsClientProvider_SelectedIndexChanged(object sender, EventArgs e)
         {
             //set the choosen tfsclient provider
-            string selectedProvideName = (string)comboTfsClientProvider.SelectedItem;
+            string selectedProvideName = ((NameDescriptionPair)comboTfsClientProvider.SelectedItem).Name;
             TfsClient.SetProvider(selectedProvideName);
 
             Settings.Default.TFSClientProvider = selectedProvideName;
@@ -266,5 +263,22 @@ namespace tfs2svn.Winforms
         }
         #endregion
 
+    }
+
+    public class NameDescriptionPair
+    {
+        public string Name;
+        public string Description;
+
+        public NameDescriptionPair(string name, string description)
+        {
+            Name = name;
+            Description = description;
+        }
+
+        public override string ToString()
+        {
+            return Description;
+        }
     }
 }

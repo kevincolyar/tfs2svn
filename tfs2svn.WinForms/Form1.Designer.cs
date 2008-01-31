@@ -28,9 +28,9 @@ namespace tfs2svn.Winforms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem37 = new System.Windows.Forms.ListViewItem("One");
-            System.Windows.Forms.ListViewItem listViewItem38 = new System.Windows.Forms.ListViewItem("Two");
-            System.Windows.Forms.ListViewItem listViewItem39 = new System.Windows.Forms.ListViewItem("Three");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("One");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Two");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Three");
             this.button1 = new System.Windows.Forms.Button();
             this.tbTFSUrl = new System.Windows.Forms.TextBox();
             this.tbSVNUrl = new System.Windows.Forms.TextBox();
@@ -51,6 +51,10 @@ namespace tfs2svn.Winforms
             this.label8 = new System.Windows.Forms.Label();
             this.cbCreateRepository = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboTfsClientProvider = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabStatus = new System.Windows.Forms.TabPage();
@@ -64,10 +68,6 @@ namespace tfs2svn.Winforms
             this.colOldPath = new System.Windows.Forms.ColumnHeader();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblTimeRemaining = new System.Windows.Forms.ToolStripStatusLabel();
-            this.comboTfsClientProvider = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -269,6 +269,46 @@ namespace tfs2svn.Winforms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "TFS source settings";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(259, 83);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(432, 13);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Note: OpenTF libs are included. To use Microsoft\'s libs you\'ll need Team Explorer" +
+                " installed.";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(259, 110);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(401, 13);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Note: Starting at Changeset# greater than 1 is suitable for incremental updates o" +
+                "nly!";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(38, 83);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 13);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "TFS Client library";
+            // 
+            // comboTfsClientProvider
+            // 
+            this.comboTfsClientProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTfsClientProvider.FormattingEnabled = true;
+            this.comboTfsClientProvider.Location = new System.Drawing.Point(130, 79);
+            this.comboTfsClientProvider.Name = "comboTfsClientProvider";
+            this.comboTfsClientProvider.Size = new System.Drawing.Size(123, 21);
+            this.comboTfsClientProvider.Sorted = true;
+            this.comboTfsClientProvider.TabIndex = 22;
+            this.comboTfsClientProvider.SelectedIndexChanged += new System.EventHandler(this.comboTfsClientProvider_SelectedIndexChanged);
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -326,7 +366,7 @@ namespace tfs2svn.Winforms
             this.tabDetails.Controls.Add(this.lstMovement);
             this.tabDetails.Location = new System.Drawing.Point(4, 22);
             this.tabDetails.Name = "tabDetails";
-            this.tabDetails.Size = new System.Drawing.Size(721, 215);
+            this.tabDetails.Size = new System.Drawing.Size(721, 227);
             this.tabDetails.TabIndex = 1;
             this.tabDetails.Text = "Details";
             this.tabDetails.UseVisualStyleBackColor = true;
@@ -343,12 +383,12 @@ namespace tfs2svn.Winforms
             this.colOldPath});
             this.lstMovement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstMovement.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem37,
-            listViewItem38,
-            listViewItem39});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
             this.lstMovement.Location = new System.Drawing.Point(0, 0);
             this.lstMovement.Name = "lstMovement";
-            this.lstMovement.Size = new System.Drawing.Size(721, 215);
+            this.lstMovement.Size = new System.Drawing.Size(721, 227);
             this.lstMovement.TabIndex = 0;
             this.lstMovement.UseCompatibleStateImageBehavior = false;
             this.lstMovement.View = System.Windows.Forms.View.Details;
@@ -390,45 +430,6 @@ namespace tfs2svn.Winforms
             // 
             this.lblTimeRemaining.Name = "lblTimeRemaining";
             this.lblTimeRemaining.Size = new System.Drawing.Size(0, 17);
-            // 
-            // comboTfsClientProvider
-            // 
-            this.comboTfsClientProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboTfsClientProvider.FormattingEnabled = true;
-            this.comboTfsClientProvider.Location = new System.Drawing.Point(130, 79);
-            this.comboTfsClientProvider.Name = "comboTfsClientProvider";
-            this.comboTfsClientProvider.Size = new System.Drawing.Size(123, 21);
-            this.comboTfsClientProvider.TabIndex = 22;
-            this.comboTfsClientProvider.SelectedIndexChanged += new System.EventHandler(this.comboTfsClientProvider_SelectedIndexChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(38, 83);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(86, 13);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "TFS Client library";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(259, 110);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(401, 13);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "Note: Starting at Changeset# greater than 1 is suitable for incremental updates o" +
-                "nly!";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(259, 83);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(432, 13);
-            this.label11.TabIndex = 24;
-            this.label11.Text = "Note: OpenTF libs are included. To use Microsoft\'s libs you\'ll need Team Explorer" +
-                " installed.";
             // 
             // MainForm
             // 
