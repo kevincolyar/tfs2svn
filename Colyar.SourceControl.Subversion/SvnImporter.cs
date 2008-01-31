@@ -210,8 +210,8 @@ namespace Colyar.SourceControl.Subversion
 
                     Thread.Sleep(1000);
                     RetrySvnCommand(input, retryCount);
+                    return;
                 }
-
                 throw new Exception(String.Format("svn error when executing 'svn {0}'. Exception: {1}.", input, output));
             }
         }
