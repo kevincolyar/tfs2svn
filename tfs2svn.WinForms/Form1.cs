@@ -148,7 +148,7 @@ namespace tfs2svn.Winforms
             lstMovement.Items.Clear();
 
             Thread thread = new Thread(DoWork);
-            thread.Priority = ThreadPriority.Highest;
+            thread.Priority = ThreadPriority.Normal;
             thread.Start();
         }
 

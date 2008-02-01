@@ -172,6 +172,7 @@ namespace Colyar.SourceControl.Subversion
             p.StartInfo.RedirectStandardError = true;
 
             p.Start();
+            p.PriorityClass = ProcessPriorityClass.High;
             p.StandardOutput.ReadToEnd(); //read standard output and swallow
             ParseSvnOuput(command, p.StandardError.ReadToEnd(), retryCount);
             p.WaitForExit();
@@ -192,6 +193,7 @@ namespace Colyar.SourceControl.Subversion
             p.StartInfo.RedirectStandardError = true;
 
             p.Start();
+            p.PriorityClass = ProcessPriorityClass.High;
             p.StandardOutput.ReadToEnd(); //read standard output and swallow
             ParseSvnAdminOuput(command, p.StandardError.ReadToEnd());
             p.WaitForExit();
