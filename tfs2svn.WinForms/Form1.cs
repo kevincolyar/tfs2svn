@@ -19,6 +19,7 @@ namespace tfs2svn.Winforms
         // Static log4net logger instance
         private static readonly ILog log = LogManager.GetLogger(typeof(MainForm));
         private static ProgressTimeEstimator _progressTimeEstimator;
+        private int _lastSuccesfulChangeset = -1;
 
         public MainForm()
         {
@@ -90,6 +91,8 @@ namespace tfs2svn.Winforms
 
             this.BeginInvoke(
                 new MethodInvoker(delegate() { lblTimeRemaining.Text = _progressTimeEstimator.GetApproxTimeRemaining(); }));
+
+            _lastSuccesfulChangeset = changeset;
         }
         void tfs2svnConverter_FolderUndeleted(int changeset, string path, string committer, string comment, DateTime date)
         {
@@ -143,6 +146,7 @@ namespace tfs2svn.Winforms
         private void button1_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
+            _lastSuccesfulChangeset = -1;
             button1.Enabled = false;
             lstStatus.Items.Clear();
             lstMovement.Items.Clear();
@@ -228,6 +232,16 @@ namespace tfs2svn.Winforms
             {
                 this.BeginInvoke(
                     new MethodInvoker(delegate() { button1.Enabled = true; }));
+
+                this.BeginInvoke(
+                    new MethodInvoker(delegate() {
+                        if (_lastSuccesfulChangeset > -1 && Settings.Default.FromChangeset > 1 && MessageBox.Show("Update 'Start on Changeset#' for next incremental update (#" + (_lastSuccesfulChangeset + 1).ToString() + ")?", "Update starting Changeset#?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            Settings.Default.FromChangeset = _lastSuccesfulChangeset + 1;
+                            tbChangesetStart.Text = Settings.Default.FromChangeset.ToString();
+                            Settings.Default.Save();
+                        }
+                    }));
             }
         }
         private void AddUsernameMappings(Tfs2SvnConverter tfs2svnConverter)
