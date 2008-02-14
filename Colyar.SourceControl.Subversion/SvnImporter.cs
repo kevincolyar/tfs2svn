@@ -203,7 +203,7 @@ namespace Colyar.SourceControl.Subversion
         {
             if (output != "")
             {
-                if (output.Contains("authorization failed") && retryCount != 0)
+                if (retryCount != 0 && Regex.IsMatch(output, "(could not connect)|(authorization failed)|(DAV request failed)", RegexOptions.IgnoreCase))
                 {
                     log.Warn(String.Format("svn error when executing 'svn {0}'. Exception: {1}. Trying again.", input, output));
 
