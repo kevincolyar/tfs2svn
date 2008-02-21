@@ -28,9 +28,7 @@ namespace tfs2svn.Winforms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("One");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Two");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Three");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.button1 = new System.Windows.Forms.Button();
             this.tbTFSUrl = new System.Windows.Forms.TextBox();
             this.tbSVNUrl = new System.Windows.Forms.TextBox();
@@ -68,21 +66,27 @@ namespace tfs2svn.Winforms
             this.colOldPath = new System.Windows.Forms.ColumnHeader();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblTimeRemaining = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabStatus.SuspendLayout();
             this.tabDetails.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(666, 269);
+            this.button1.Location = new System.Drawing.Point(666, 275);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 90;
             this.button1.Text = "Convert!";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -92,14 +96,14 @@ namespace tfs2svn.Winforms
             this.tbTFSUrl.Location = new System.Drawing.Point(130, 23);
             this.tbTFSUrl.Name = "tbTFSUrl";
             this.tbTFSUrl.Size = new System.Drawing.Size(443, 20);
-            this.tbTFSUrl.TabIndex = 5;
+            this.tbTFSUrl.TabIndex = 10;
             // 
             // tbSVNUrl
             // 
             this.tbSVNUrl.Location = new System.Drawing.Point(130, 19);
             this.tbSVNUrl.Name = "tbSVNUrl";
             this.tbSVNUrl.Size = new System.Drawing.Size(443, 20);
-            this.tbSVNUrl.TabIndex = 6;
+            this.tbSVNUrl.TabIndex = 70;
             this.tbSVNUrl.TextChanged += new System.EventHandler(this.tbSVNUrl_TextChanged);
             // 
             // tbChangesetStart
@@ -107,13 +111,13 @@ namespace tfs2svn.Winforms
             this.tbChangesetStart.Location = new System.Drawing.Point(130, 107);
             this.tbChangesetStart.Name = "tbChangesetStart";
             this.tbChangesetStart.Size = new System.Drawing.Size(123, 20);
-            this.tbChangesetStart.TabIndex = 7;
+            this.tbChangesetStart.TabIndex = 60;
             // 
             // progressBar1
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(12, 549);
+            this.progressBar1.Location = new System.Drawing.Point(12, 489);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(729, 23);
             this.progressBar1.TabIndex = 8;
@@ -171,21 +175,21 @@ namespace tfs2svn.Winforms
             this.tbWorkingCopyFolder.Location = new System.Drawing.Point(130, 61);
             this.tbWorkingCopyFolder.Name = "tbWorkingCopyFolder";
             this.tbWorkingCopyFolder.Size = new System.Drawing.Size(443, 20);
-            this.tbWorkingCopyFolder.TabIndex = 14;
+            this.tbWorkingCopyFolder.TabIndex = 80;
             // 
             // tbTFSUsername
             // 
             this.tbTFSUsername.Location = new System.Drawing.Point(130, 51);
             this.tbTFSUsername.Name = "tbTFSUsername";
             this.tbTFSUsername.Size = new System.Drawing.Size(123, 20);
-            this.tbTFSUsername.TabIndex = 15;
+            this.tbTFSUsername.TabIndex = 20;
             // 
             // tbTFSPassword
             // 
             this.tbTFSPassword.Location = new System.Drawing.Point(318, 51);
             this.tbTFSPassword.Name = "tbTFSPassword";
             this.tbTFSPassword.Size = new System.Drawing.Size(100, 20);
-            this.tbTFSPassword.TabIndex = 16;
+            this.tbTFSPassword.TabIndex = 30;
             this.tbTFSPassword.UseSystemPasswordChar = true;
             // 
             // label5
@@ -220,7 +224,7 @@ namespace tfs2svn.Winforms
             this.tbTFSDomain.Location = new System.Drawing.Point(473, 51);
             this.tbTFSDomain.Name = "tbTFSDomain";
             this.tbTFSDomain.Size = new System.Drawing.Size(100, 20);
-            this.tbTFSDomain.TabIndex = 20;
+            this.tbTFSDomain.TabIndex = 40;
             // 
             // label8
             // 
@@ -248,6 +252,7 @@ namespace tfs2svn.Winforms
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
@@ -262,7 +267,7 @@ namespace tfs2svn.Winforms
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.tbTFSPassword);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(729, 136);
             this.groupBox1.TabIndex = 23;
@@ -306,13 +311,14 @@ namespace tfs2svn.Winforms
             this.comboTfsClientProvider.Name = "comboTfsClientProvider";
             this.comboTfsClientProvider.Size = new System.Drawing.Size(123, 21);
             this.comboTfsClientProvider.Sorted = true;
-            this.comboTfsClientProvider.TabIndex = 22;
+            this.comboTfsClientProvider.TabIndex = 50;
             this.comboTfsClientProvider.SelectedIndexChanged += new System.EventHandler(this.comboTfsClientProvider_SelectedIndexChanged);
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBox2.Controls.Add(this.tbSVNUrl);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.cbCreateRepository);
@@ -320,7 +326,7 @@ namespace tfs2svn.Winforms
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.tbWorkingCopyFolder);
-            this.groupBox2.Location = new System.Drawing.Point(12, 154);
+            this.groupBox2.Location = new System.Drawing.Point(11, 169);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(729, 100);
             this.groupBox2.TabIndex = 24;
@@ -334,10 +340,10 @@ namespace tfs2svn.Winforms
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabStatus);
             this.tabControl1.Controls.Add(this.tabDetails);
-            this.tabControl1.Location = new System.Drawing.Point(12, 290);
+            this.tabControl1.Location = new System.Drawing.Point(12, 288);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(729, 253);
+            this.tabControl1.Size = new System.Drawing.Size(729, 195);
             this.tabControl1.TabIndex = 26;
             // 
             // tabStatus
@@ -346,7 +352,7 @@ namespace tfs2svn.Winforms
             this.tabStatus.Location = new System.Drawing.Point(4, 22);
             this.tabStatus.Name = "tabStatus";
             this.tabStatus.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStatus.Size = new System.Drawing.Size(721, 227);
+            this.tabStatus.Size = new System.Drawing.Size(721, 169);
             this.tabStatus.TabIndex = 0;
             this.tabStatus.Text = "Status";
             this.tabStatus.UseVisualStyleBackColor = true;
@@ -358,7 +364,7 @@ namespace tfs2svn.Winforms
             this.lstStatus.Location = new System.Drawing.Point(3, 3);
             this.lstStatus.Name = "lstStatus";
             this.lstStatus.ScrollAlwaysVisible = true;
-            this.lstStatus.Size = new System.Drawing.Size(715, 212);
+            this.lstStatus.Size = new System.Drawing.Size(715, 160);
             this.lstStatus.TabIndex = 4;
             // 
             // tabDetails
@@ -366,7 +372,7 @@ namespace tfs2svn.Winforms
             this.tabDetails.Controls.Add(this.lstMovement);
             this.tabDetails.Location = new System.Drawing.Point(4, 22);
             this.tabDetails.Name = "tabDetails";
-            this.tabDetails.Size = new System.Drawing.Size(721, 227);
+            this.tabDetails.Size = new System.Drawing.Size(721, 169);
             this.tabDetails.TabIndex = 1;
             this.tabDetails.Text = "Details";
             this.tabDetails.UseVisualStyleBackColor = true;
@@ -382,13 +388,9 @@ namespace tfs2svn.Winforms
             this.colNewPath,
             this.colOldPath});
             this.lstMovement.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstMovement.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
             this.lstMovement.Location = new System.Drawing.Point(0, 0);
             this.lstMovement.Name = "lstMovement";
-            this.lstMovement.Size = new System.Drawing.Size(721, 227);
+            this.lstMovement.Size = new System.Drawing.Size(721, 169);
             this.lstMovement.TabIndex = 0;
             this.lstMovement.UseCompatibleStateImageBehavior = false;
             this.lstMovement.View = System.Windows.Forms.View.Details;
@@ -408,7 +410,7 @@ namespace tfs2svn.Winforms
             // 
             // colNewPath
             // 
-            this.colNewPath.Text = "New Path";
+            this.colNewPath.Text = "Path";
             this.colNewPath.Width = 228;
             // 
             // colOldPath
@@ -420,7 +422,7 @@ namespace tfs2svn.Winforms
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblTimeRemaining});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 575);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 515);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(752, 22);
             this.statusStrip1.TabIndex = 27;
@@ -431,18 +433,63 @@ namespace tfs2svn.Winforms
             this.lblTimeRemaining.Name = "lblTimeRemaining";
             this.lblTimeRemaining.Size = new System.Drawing.Size(0, 17);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(752, 24);
+            this.menuStrip1.TabIndex = 28;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.quitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // quitToolStripMenuItem
+            // 
+            this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.quitToolStripMenuItem.Text = "E&xit";
+            this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.aboutToolStripMenuItem.Text = "&About tfs2svn";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 597);
+            this.ClientSize = new System.Drawing.Size(752, 537);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(623, 338);
             this.Name = "MainForm";
             this.Text = "tfs2svn 0.1 [WinForms client]";
@@ -455,6 +502,8 @@ namespace tfs2svn.Winforms
             this.tabDetails.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,6 +548,11 @@ namespace tfs2svn.Winforms
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

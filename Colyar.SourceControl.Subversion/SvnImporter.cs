@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Net.Mime;
+using System.Reflection;
 using Colyar.SourceControl;
 using System.Text.RegularExpressions;
 using System.IO;
@@ -17,7 +19,7 @@ namespace Colyar.SourceControl.Subversion
 
         private string _repositoryPath;
         private string _workingCopyPath;
-        private string _svnPath;
+        private readonly string _svnPath;
         private readonly Dictionary<string, string> _usernameMap = new Dictionary<string, string>();
         private static readonly ILog log = LogManager.GetLogger(typeof(SvnImporter));
 

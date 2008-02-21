@@ -54,6 +54,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.OpenTf
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "tfs2svn.Setup", "tfs2svn.Setup\tfs2svn.Setup.vdproj", "{7A3B2809-11FE-40DB-B5A9-03DAECB84D4A}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +102,8 @@ Global
 		{D0D426BC-A098-422D-BB13-22D82088A74A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0D426BC-A098-422D-BB13-22D82088A74A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0D426BC-A098-422D-BB13-22D82088A74A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A3B2809-11FE-40DB-B5A9-03DAECB84D4A}.Debug|Any CPU.ActiveCfg = Debug
+		{7A3B2809-11FE-40DB-B5A9-03DAECB84D4A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

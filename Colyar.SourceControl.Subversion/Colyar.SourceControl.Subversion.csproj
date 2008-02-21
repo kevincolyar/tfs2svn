@@ -76,232 +76,681 @@
     <Content Include="libs\svn-win32-1.4.6\bin\mod_dav_svn.so">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="libs\svn-win32-1.4.6\iconv\adobe-stdenc.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\adobe-symbol.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\adobe-zdingbats.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\big5.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cns11643-plane1.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cns11643-plane14.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cns11643-plane2.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp037.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp038.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp10000.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp10006.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp10007.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp10029.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp1006.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp10079.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp10081.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp1026.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp273.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp274.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp275.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp277.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp278.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp280.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp281.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp284.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp285.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp290.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp297.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp420.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp423.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp424.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp437.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp500.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp737.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp775.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp850.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp851.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp852.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp855.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp856.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp857.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp860.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp861.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp862.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp863.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp864.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp865.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp866.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp868.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp869.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp870.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp871.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp874.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp875.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp880.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp891.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp903.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp904.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp905.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp918.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp932.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp936.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp949.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\cp950.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\dec-mcs.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-at-de-a.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-at-de.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-ca-fr.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-dk-no-a.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-dk-no.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-es-a.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-es-s.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-es.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-fi-se-a.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-fi-se.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-fr.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-it.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-pt.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-uk.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ebcdic-us.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\euc-jp.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\euc-kr.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\euc-tw.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\gb12345.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\gb2312.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\gb_2312-80.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\hp-roman8.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-10646-ucs-2.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-10646-ucs-4.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-2022-cn.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-2022-jp-2.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-2022-jp.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-2022-kr.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-1.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-10.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-13.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-14.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-15.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-2.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-3.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-4.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-5.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-6.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-7.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-8.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-8859-9.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-10.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-102.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-103.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-11.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-111.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-121.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-122.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-123.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-128.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-13.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-139.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-14.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-141.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-142.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-143.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-146.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-147.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-15.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-150.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-151.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-152.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-153.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-154.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-155.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-158.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-16.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-17.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-18.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-19.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-2.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-21.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-25.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-27.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-37.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-4.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-47.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-49.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-50.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-51.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-54.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-55.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-57.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-60.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-61.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-69.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-70.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-8-1.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-8-2.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-84.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-85.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-86.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-88.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-89.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-9-1.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-9-2.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-90.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-91.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-92.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-93.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-94.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-95.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-96.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-98.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso-ir-99.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso646-dk.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\iso646-kr.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\jis_x0201.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\jis_x0208-1983.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\jis_x0212-1990.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\johab.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\koi8-r.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\koi8-ru.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\koi8-u.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ksx1001.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-ce.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-croatian.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-cyrillic.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-dingbats.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-greek.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-iceland.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-japan.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-roman.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-romania.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-thai.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-turkish.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\mac-ukraine.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\macintosh.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\osd_ebcdic_df04_1.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\osd_ebcdic_df04_15.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\shift_jis.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ucs2-internal.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\ucs4-internal.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\unicode-1-1-utf-7.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\us-ascii.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\utf-16.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\utf-8.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1250.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1251.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1252.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1253.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1254.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1255.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1256.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1257.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\windows-1258.so" />
-    <None Include="libs\svn-win32-1.4.6\iconv\_tbl_simple.so" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\de\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\es\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\fr\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\it\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\ja\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\ko\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\nb\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\pl\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\pt_BR\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\sv\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\zh_CN\LC_MESSAGES\subversion.mo" />
-    <None Include="libs\svn-win32-1.4.6\share\locale\zh_TW\LC_MESSAGES\subversion.mo" />
+    <Content Include="libs\svn-win32-1.4.6\iconv\adobe-stdenc.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\adobe-symbol.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\adobe-zdingbats.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\big5.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cns11643-plane1.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cns11643-plane14.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cns11643-plane2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp037.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp038.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp10000.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp10006.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp10007.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp10029.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp1006.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp10079.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp10081.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp1026.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp273.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp274.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp275.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp277.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp278.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp280.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp281.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp284.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp285.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp290.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp297.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp420.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp423.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp424.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp437.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp500.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp737.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp775.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp850.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp851.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp852.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp855.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp856.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp857.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp860.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp861.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp862.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp863.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp864.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp865.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp866.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp868.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp869.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp870.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp871.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp874.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp875.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp880.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp891.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp903.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp904.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp905.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp918.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp932.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp936.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp949.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\cp950.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\dec-mcs.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-at-de-a.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-at-de.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-ca-fr.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-dk-no-a.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-dk-no.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-es-a.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-es-s.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-es.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-fi-se-a.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-fi-se.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-fr.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-it.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-pt.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-uk.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ebcdic-us.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\euc-jp.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\euc-kr.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\euc-tw.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\gb12345.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\gb2312.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\gb_2312-80.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\hp-roman8.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-10646-ucs-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-10646-ucs-4.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-2022-cn.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-2022-jp-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-2022-jp.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-2022-kr.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-1.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-10.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-13.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-14.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-15.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-3.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-4.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-5.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-6.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-7.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-8.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-8859-9.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-10.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-102.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-103.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-11.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-111.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-121.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-122.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-123.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-128.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-13.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-139.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-14.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-141.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-142.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-143.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-146.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-147.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-15.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-150.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-151.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-152.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-153.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-154.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-155.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-158.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-16.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-17.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-18.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-19.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-21.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-25.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-27.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-37.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-4.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-47.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-49.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-50.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-51.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-54.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-55.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-57.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-60.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-61.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-69.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-70.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-8-1.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-8-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-84.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-85.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-86.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-88.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-89.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-9-1.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-9-2.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-90.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-91.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-92.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-93.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-94.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-95.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-96.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-98.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso-ir-99.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso646-dk.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\iso646-kr.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\jis_x0201.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\jis_x0208-1983.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\jis_x0212-1990.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\johab.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\koi8-r.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\koi8-ru.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\koi8-u.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ksx1001.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-ce.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-croatian.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-cyrillic.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-dingbats.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-greek.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-iceland.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-japan.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-roman.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-romania.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-thai.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-turkish.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\mac-ukraine.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\macintosh.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\osd_ebcdic_df04_1.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\osd_ebcdic_df04_15.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\shift_jis.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ucs2-internal.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\ucs4-internal.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\unicode-1-1-utf-7.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\us-ascii.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\utf-16.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\utf-8.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1250.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1251.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1252.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1253.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1254.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1255.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1256.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1257.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\windows-1258.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\iconv\_tbl_simple.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\de\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\es\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\fr\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\it\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\ja\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\ko\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\nb\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\pl\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\pt_BR\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\sv\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\zh_CN\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libs\svn-win32-1.4.6\share\locale\zh_TW\LC_MESSAGES\subversion.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="docs\PostBuildScript.txt" />
     <Content Include="libs\svn-win32-1.4.6\bin\svn.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

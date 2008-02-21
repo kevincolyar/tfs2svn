@@ -41,17 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="frmMain.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>Form1.cs</DependentUpon>
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAbout.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,6 +87,7 @@
     <ProjectReference Include="..\Colyar.SourceControl.TeamFoundationServer\Colyar.SourceControl.TeamFoundationServer.csproj">
       <Project>{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}</Project>
       <Name>Colyar.SourceControl.TeamFoundationServer</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Colyar.SourceControl.Tfs2Svn\Colyar.SourceControl.Tfs2Svn.csproj">
       <Project>{51DEB101-123D-41F8-84B3-F62FE733477F}</Project>
@@ -91,6 +102,17 @@
       <Name>Colyar.Utils</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\docs\COPYING.txt">
+      <Link>docs\COPYING.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\docs\README.txt">
+      <Link>docs\README.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\app.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -99,4 +121,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>rmdir "$(TargetDir)libs" /s /q
+md "$(TargetDir)libs"
+xcopy "$(SolutionDir)Colyar.SourceControl.Subversion\libs\*" "$(TargetDir)libs" /s /i</PostBuildEvent>
+  </PropertyGroup>
 </Project>

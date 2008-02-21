@@ -1,0 +1,5 @@
+# To use, put this in the solution post-build
+
+rmdir "$(TargetDir)libs" /s /q
+md "$(TargetDir)libs"
+xcopy "$(SolutionDir)Colyar.SourceControl.Subversion\libs\*" "$(TargetDir)libs" /s /i

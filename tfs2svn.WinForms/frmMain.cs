@@ -277,6 +277,16 @@ namespace tfs2svn.Winforms
         }
         #endregion
 
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new frmAbout().ShowDialog();
+        }
+
     }
 
     public class NameDescriptionPair
