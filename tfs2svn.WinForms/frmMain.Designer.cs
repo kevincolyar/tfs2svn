@@ -492,7 +492,7 @@ namespace tfs2svn.Winforms
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(623, 338);
             this.Name = "MainForm";
-            this.Text = "tfs2svn 0.1 [WinForms client]";
+            this.Text = "tfs2svn";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

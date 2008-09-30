@@ -176,7 +176,6 @@ namespace tfs2svn.Winforms
             tfs2svnConverter.FolderDeleted +=  tfs2svnConverter_FolderDeleted;
             tfs2svnConverter.FolderRenamed +=  tfs2svnConverter_FolderRenamed;
             tfs2svnConverter.FolderUndeleted += tfs2svnConverter_FolderUndeleted;
-            tfs2svnConverter.SvnAuthenticationRetry += tfs2svnConverter_SvnAuthenticationRetry;
         }
 
         

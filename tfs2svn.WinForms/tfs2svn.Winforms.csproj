@@ -71,6 +71,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -125,5 +126,7 @@
     <PostBuildEvent>rmdir "$(TargetDir)libs" /s /q
 md "$(TargetDir)libs"
 xcopy "$(SolutionDir)Colyar.SourceControl.Subversion\libs\*" "$(TargetDir)libs" /s /i</PostBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>

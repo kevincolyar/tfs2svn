@@ -127,11 +127,6 @@ namespace Colyar.SourceControl.Tfs2Svn
             add { TfsClient.Provider.FolderUndeleted += value; }
             remove { TfsClient.Provider.FolderUndeleted -= value; }
         }
-        public event SvnCommandRetryHandler SvnAuthenticationRetry
-        {
-            add { this._svnImporter.AuthenticationRetry += value; }
-            remove { this._svnImporter.AuthenticationRetry -= value; }
-        }
 
         #endregion
 
@@ -275,7 +270,6 @@ namespace Colyar.SourceControl.Tfs2Svn
         {
             renamedFolders.Clear();
             fileSwapBackups.Clear();
-            //this._svnImporter.Update(); //no need: workingcopy should always be up-to-date
         }
 
         void tfsExporter_EndChangeSet(int changeset, string committer, string comment, DateTime date)

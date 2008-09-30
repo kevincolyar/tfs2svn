@@ -50,8 +50,6 @@ namespace Colyar.SourceControl.Subversion
 
         #endregion
 
-        public SvnCommandRetryHandler AuthenticationRetry;
-
         #region Public Methods
 
         public void CreateRepository(string repositoryPath)
@@ -156,11 +154,6 @@ namespace Colyar.SourceControl.Subversion
 
         private void RunSvnCommand(string command)
         {
-            RunSvnCommand(command, 10);
-        }
-
-        private void RunSvnCommand(string command, int retryCount)
-        {
             log.Info("svn " + command);
 
             Process p = new Process();
@@ -176,7 +169,7 @@ namespace Colyar.SourceControl.Subversion
             p.Start();
             p.PriorityClass = ProcessPriorityClass.High;
             p.StandardOutput.ReadToEnd(); //read standard output and swallow
-            ParseSvnOuput(command, p.StandardError.ReadToEnd(), retryCount);
+            ParseSvnOuput(command, p.StandardError.ReadToEnd());
             p.WaitForExit();
 
         }
@@ -201,21 +194,10 @@ namespace Colyar.SourceControl.Subversion
             p.WaitForExit();
         }
 
-        private void ParseSvnOuput(string input, string output, int retryCount)
+        private void ParseSvnOuput(string input, string output)
         {
             if (output != "")
             {
-                if (retryCount != 0 && Regex.IsMatch(output, "(could not connect)|(authorization failed)|(DAV request failed)", RegexOptions.IgnoreCase))
-                {
-                    log.Warn(String.Format("svn error when executing 'svn {0}'. Exception: {1}. Trying again.", input, output));
-
-                    if (this.AuthenticationRetry != null)
-                        this.AuthenticationRetry(output, retryCount);
-
-                    Thread.Sleep(1000);
-                    RetrySvnCommand(input, retryCount);
-                    return;
-                }
                 throw new Exception(String.Format("svn error when executing 'svn {0}'. Exception: {1}.", input, output));
             }
         }
@@ -226,17 +208,6 @@ namespace Colyar.SourceControl.Subversion
             {
                 throw new Exception(String.Format("svn error when executing 'svn {0}'. Exception: {1}.", input, output));
             }
-        }
-
-        private void RetrySvnCommand(string command, int retryCount)
-        {
-            if(retryCount == 0)
-            {
-                throw new Exception(String.Format("svn command failed. 'svn {0}'", command));
-            }
-
-            --retryCount;
-            RunSvnCommand(command, retryCount);
         }
 
         private string GetMappedUsername(string committer)
