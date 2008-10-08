@@ -25,7 +25,7 @@ namespace Colyar.SourceControl.Tfs2Svn
         private bool _createSvnFileRepository;
         private bool _doInitialCheckout;
 
-        private readonly string _tfsUrlRegex = @"(?<server>https?://([\w+-]\.?)+(:\d+)?)(?<repo>(/[\w- ]+)+)?";
+        private readonly string _tfsUrlRegex = @"(?<server>https?://([\w+-]\.?)+(:\d+)?)(?<repo>(/[\w-. ]+)+)?";
         //private readonly string _svnUrlRegex = @"(?<server>(https?|file|svn|svn\+ssh):///?([\w-]+\.?)+)(?<repo>(/[\w-]+)+)?";
 
         private Dictionary<string, string> fileSwapBackups = new Dictionary<string, string>();
