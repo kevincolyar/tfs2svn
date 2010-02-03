@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using System.Net;
+using log4net;
 using Colyar.SourceControl;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
@@ -39,6 +40,7 @@ namespace Colyar.SourceControl.MicrosoftTfsClient
         private Microsoft.TeamFoundation.Client.TeamFoundationServer _teamFoundationServer;
         private VersionControlServer _versionControlServer;
         private int _startingChangeset;
+        private static readonly ILog log = LogManager.GetLogger(typeof(TfsClientProvider));
 
         #endregion
 
@@ -89,12 +91,51 @@ namespace Colyar.SourceControl.MicrosoftTfsClient
                 if (this.BeginChangeSet != null)
                     this.BeginChangeSet(changeset.ChangesetId, changeset.Committer, changeset.Comment, changeset.CreationDate);
 
-                foreach (Change change in changeset.Changes) //OrderChanges(changeset.Changes))
+                foreach (Change change in OrderChanges(changeset.Changes))
                     ProcessChange(changeset, change);
 
                 if (this.EndChangeSet != null)
                     this.EndChangeSet(changeset.ChangesetId, changeset.Committer, changeset.Comment, changeset.CreationDate);
             }
+        }
+
+        private IEnumerable OrderChanges(Change[] changes)
+        {
+            ArrayList Undelete = new ArrayList();
+            ArrayList Edit = new ArrayList();
+            ArrayList Rename = new ArrayList();
+            ArrayList Branch = new ArrayList();
+            ArrayList Add = new ArrayList();
+            ArrayList Delete = new ArrayList();
+            Console.WriteLine("unsorted: " + changes);
+            log.Info("unsorted: " + changes);
+            foreach (Change change in changes)
+            {
+                if ((change.ChangeType & ChangeType.Undelete) == ChangeType.Undelete)
+                    Undelete.Add(change);
+                else if ((change.ChangeType & ChangeType.Rename) == ChangeType.Rename)
+                    // no need to handle the edit here, rename will add the modified file to SVN
+                    Rename.Add(change);
+                else if ((change.ChangeType & ChangeType.Branch) == ChangeType.Branch)
+                    Branch.Add(change);
+                else if ((change.ChangeType & ChangeType.Add) == ChangeType.Add)
+                    Add.Add(change);
+                else if ((change.ChangeType & ChangeType.Delete) == ChangeType.Delete)
+                    Delete.Add(change);
+                else if ((change.ChangeType & ChangeType.Edit) == ChangeType.Edit)
+                    Edit.Add(change);
+            }
+            ArrayList l = new ArrayList();
+            // add the elements in the order of the following commands
+            l.AddRange(Rename);
+            l.AddRange(Undelete);
+            l.AddRange(Add);
+            l.AddRange(Delete);
+            l.AddRange(Edit);
+            l.AddRange(Branch);
+            Console.WriteLine("sorted: " + l);
+            log.Info("sorted: " + l);
+            return l;
         }
 
         #endregion
