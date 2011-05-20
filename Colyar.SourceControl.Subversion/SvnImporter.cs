@@ -99,6 +99,7 @@ namespace Colyar.SourceControl.Subversion
         {
             if (path != this._workingCopyPath)
             {
+                AddMissingDirectoryIfNeeded(path);
                 RunSvnCommand("add \"" + path + "\"");
             }
         }
@@ -111,6 +112,7 @@ namespace Colyar.SourceControl.Subversion
         }
         public void MoveFile(string oldPath, string newPath, bool isFolder)
         {
+            AddMissingDirectoryIfNeeded(newPath);
             RunSvnCommand("mv \"" + oldPath + "\" \"" + newPath + "\"");
         }
         public void MoveServerSide(string oldPath, string newPath, int changeset, string committer, DateTime commitDate)
@@ -134,6 +136,18 @@ namespace Colyar.SourceControl.Subversion
 
         #region Private Methods
 
+        private void AddMissingDirectoryIfNeeded(string path)
+        {
+            string directory = Directory.GetParent(path).FullName;
+
+            if (Directory.Exists(directory))
+                return;
+
+            log.Info("Adding: " + directory);
+            Directory.CreateDirectory(directory);
+            RunSvnCommand("add --force \"" + this._workingCopyPath + "\"");
+            Commit("Adding missing directory", "tfs2svn", DateTime.Today, 0);
+        }
         private void SetCommitAuthorAndDate(DateTime commitDate, string committer)
         {
             string username = GetMappedUsername(committer);
@@ -196,6 +210,11 @@ namespace Colyar.SourceControl.Subversion
 
         private void ParseSvnOuput(string input, string output)
         {
+            if(Regex.Match(output, "^svn: warning:").Success)
+            {
+                log.Warn("Warning: " + output);
+                return;
+            }
             if (output != "")
             {
                 throw new Exception(String.Format("svn error when executing 'svn {0}'. Exception: {1}.", input, output));

@@ -394,6 +394,7 @@ namespace Colyar.SourceControl.Tfs2Svn
                 throw new Exception("Directory not found in tfsExporter_FolderAdded");
 
             this._svnImporter.Add(path);
+            this._svnImporter.Commit(comment, committer, date, changeset);
         }
 
         void tfsExporter_FolderDeleted(int changeset, string path, string committer, string comment, DateTime date)
@@ -401,7 +402,10 @@ namespace Colyar.SourceControl.Tfs2Svn
             log.Info(String.Format("Deleting folder {0}", path));
 
             if (Directory.Exists(path) && path != _workingCopyPath) //cannot delete workingcopy root-folder
+            {
                 this._svnImporter.Remove(path, true);
+                this._svnImporter.Commit(comment, committer, date, changeset);
+            }
         }
 
         void tfsExporter_FolderBranched(int changeset, string path, string committer, string comment, DateTime date)
@@ -412,6 +416,7 @@ namespace Colyar.SourceControl.Tfs2Svn
                 throw new Exception("Directory not found in tfsExporter_FolderBranched");
 
             this._svnImporter.Add(path);
+            this._svnImporter.Commit(comment, committer, date, changeset);
         }
 
         void tfsExporter_FolderUndeleted(int changeset, string path, string committer, string comment, DateTime date)
@@ -422,6 +427,7 @@ namespace Colyar.SourceControl.Tfs2Svn
                 throw new Exception("Directory not found in tfsExporter_FolderUndeleted");
 
             this._svnImporter.Add(path);
+            this._svnImporter.Commit(comment, committer, date, changeset);
         }
 
         void tfsExporter_FolderRenamed(int changeset, string oldPath, string newPath, string committer, string comment, DateTime date)
@@ -434,11 +440,35 @@ namespace Colyar.SourceControl.Tfs2Svn
                 return; //no need for a rename
 
             if (!Directory.Exists(oldPath))
-                throw new Exception("Folder error in tfsExporter_FolderRenamed");
+            {
+                if (Directory.Exists(newPath))
+                {
+                    // This can happen when we tried applying the current change set earlier and it
+                    // failed in the middle of applying the changeset.
+                    renamedFolders.Add(oldPath, newPath);
+                    return;
+                }
+                else
+                {
+                    throw new Exception("Folder error in tfsExporter_FolderRenamed");
+                }
+            }
 
             //rename to an existing directory is only allowed when the casing of the folder-name was changed 
             if (Directory.Exists(newPath) && oldPath.ToLowerInvariant() != newPath.ToLowerInvariant())
-                throw new Exception("tfsExporter_FolderRenamed: renaming a folder to an already existing folder is not supported (yet)");
+            {
+                // Ignore. We've seen a TFS changeset like this:
+                // 1. Folder A does exist
+                // 2. The changeset adds folder A
+                // 3. The changeset renames A to B
+                // Obviously actions 2 and 3 are in the worng order in the TFS changeset.
+                // Our fix for this is: The user will have to move the folder from A to B in svn and then we'll ignore
+                // the resulting error here when we can't execute the move.
+                renamedFolders.Add(oldPath, newPath);
+                return;
+
+                //throw new Exception("tfsExporter_FolderRenamed: renaming a folder to an already existing folder is not supported (yet)");
+            }
 
             //folder renames must be done server-side (see 'Moving files and folders' in http://tortoisesvn.net/docs/nightly/TortoiseSVN_sk/tsvn-dug-rename.html)
             this._svnImporter.MoveServerSide(oldPath, newPath, changeset, committer, date);
