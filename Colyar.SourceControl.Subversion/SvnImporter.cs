@@ -180,7 +180,9 @@ namespace Colyar.SourceControl.Subversion
             p.StartInfo.RedirectStandardOutput = true;
             p.StartInfo.RedirectStandardError = true;
 
-            p.Start();
+			//Debug.WriteLine("{0} {1}", p.StartInfo.FileName, p.StartInfo.Arguments);
+
+			p.Start();
             p.PriorityClass = ProcessPriorityClass.High;
             p.StandardOutput.ReadToEnd(); //read standard output and swallow
             ParseSvnOuput(command, p.StandardError.ReadToEnd());
@@ -200,6 +202,8 @@ namespace Colyar.SourceControl.Subversion
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.RedirectStandardOutput = true;
             p.StartInfo.RedirectStandardError = true;
+
+			Debug.WriteLine("{0} {1}", p.StartInfo.FileName, p.StartInfo.Arguments);
 
             p.Start();
             p.PriorityClass = ProcessPriorityClass.High;

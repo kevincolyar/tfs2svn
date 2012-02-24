@@ -205,22 +205,31 @@ namespace Colyar.SourceControl.Tfs2Svn
             this._svnRepository = ParseSvnRepository(svnPath);
         }
         
-        private string ParseTfsServer(string tfsPath)
-        {
-            Match match = Regex.Match(tfsPath, this._tfsUrlRegex, RegexOptions.IgnoreCase);
+		//private string ParseTfsServer(string tfsPath)
+		//{
+		//    Match match = Regex.Match(tfsPath, this._tfsUrlRegex, RegexOptions.IgnoreCase);
 
-            return match.Groups["server"].Value;
-        }
-        private string ParseTfsRepository(string tfsPath)
-        {
-            Match match = Regex.Match(tfsPath, this._tfsUrlRegex, RegexOptions.IgnoreCase);
+		//    return match.Groups["server"].Value;
+		//}
+		//private string ParseTfsRepository(string tfsPath)
+		//{
+		//    Match match = Regex.Match(tfsPath, this._tfsUrlRegex, RegexOptions.IgnoreCase);
 
-            return "$" +  match.Groups["repo"].Value;
-        }
-        private string ParseSvnRepository(string svnPath)
-        {
-            return svnPath;
-        }
+		//    return "$" +  match.Groups["repo"].Value;
+		//}
+		private string ParseTfsServer(string tfsPath)
+		{
+			return tfsPath.Substring(0, tfsPath.LastIndexOf('/'));
+		}
+		private string ParseTfsRepository(string tfsPath)
+		{
+			return "$" + tfsPath.Substring(tfsPath.LastIndexOf('/'));
+		}
+		private string ParseSvnRepository(string svnPath)
+		{
+			return svnPath;
+		}
+
 
         private void DeletePath(string path)
         {

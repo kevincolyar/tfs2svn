@@ -362,17 +362,38 @@ namespace Colyar.SourceControl.OpenTfsClient
             //TODO: maybe use System.IO.Path.Combine()
         }
 
-        private Item GetPreviousItem(Item item)
-        {
-            try
-            {
-                return item.VersionControlServer.GetItem(item.ItemId, item.ChangesetId - 1, false);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error while executing GetPreviousItem", ex);
-            }
-        }
+		private Item GetPreviousItem(Item item)
+		{
+			try
+			{
+				IEnumerable changesets = item.VersionControlServer.QueryHistory(
+					item.ServerItem, new ChangesetVersionSpec(item.ChangesetId), 0, RecursionType.None, null,
+					new ChangesetVersionSpec(1), new ChangesetVersionSpec(item.ChangesetId - 1), int.MaxValue,
+					true, false);
+
+				foreach (Changeset changeset in changesets)
+				{
+					return changeset.Changes[0].Item;
+				}
+				return item.VersionControlServer.GetItem(item.ItemId, item.ChangesetId - 1, false);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Error while executing GetPreviousItem", ex);
+			}
+		}
+
+		//private Item GetPreviousItem(Item item)
+		//{
+		//    try
+		//    {
+		//        return item.VersionControlServer.GetItem(item.ItemId, item.ChangesetId - 1, false);
+		//    }
+		//    catch (Exception ex)
+		//    {
+		//        throw new Exception("Error while executing GetPreviousItem", ex);
+		//    }
+		//}
 
         #endregion
     }

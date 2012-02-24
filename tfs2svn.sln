@@ -1,64 +1,24 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl", "Colyar.SourceControl\Colyar.SourceControl.csproj", "{46B5216D-37A6-4B2C-9333-D591EFB4C08E}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.Subversion", "Colyar.SourceControl.Subversion\Colyar.SourceControl.Subversion.csproj", "{AD47F42D-1D9D-4C1A-B216-B82E652DEC5E}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.TeamFoundationServer", "Colyar.SourceControl.TeamFoundationServer\Colyar.SourceControl.TeamFoundationServer.csproj", "{8CC7D187-30BF-49D5-ACD6-A4415B71EE25}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfs2svn.Console", "tfs2svn.Console\tfs2svn.Console.csproj", "{4D159271-36C4-466E-A735-1EAF54E28F9A}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tfs2svn.Winforms", "tfs2svn.WinForms\tfs2svn.Winforms.csproj", "{3611479C-AD86-4B4A-AF59-82D27D026E7A}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.Tfs2Svn", "Colyar.SourceControl.Tfs2Svn\Colyar.SourceControl.Tfs2Svn.csproj", "{51DEB101-123D-41F8-84B3-F62FE733477F}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.Utils", "Colyar.Utils\Colyar.Utils.csproj", "{D1DDEB77-290A-4525-9A83-CA8FBD472F4C}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.MicrosoftTfsClient", "Colyar.SourceControl.MicrosoftTfsClient\Colyar.SourceControl.MicrosoftTfsClient.csproj", "{6A457FA8-2A9F-41C4-B45C-D98DAE10BDA6}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colyar.SourceControl.OpenTfsClient", "Colyar.SourceControl.OpenTfsClient\Colyar.SourceControl.OpenTfsClient.csproj", "{D0D426BC-A098-422D-BB13-22D82088A74A}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "tfs2svn.Setup", "tfs2svn.Setup\tfs2svn.Setup.vdproj", "{7A3B2809-11FE-40DB-B5A9-03DAECB84D4A}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
