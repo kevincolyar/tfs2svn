@@ -157,7 +157,7 @@ namespace Colyar.SourceControl.Subversion
                 commitDate.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ", CultureInfo.InvariantCulture),
                 this._workingCopyPath));
 
-            RunSvnCommand(String.Format("propset svn:author --revprop -rHEAD {0} \"{1}\"",
+            RunSvnCommand(String.Format("propset svn:author --revprop -rHEAD \"{0}\" \"{1}\"",
                 username,
                 this._workingCopyPath));
         }
