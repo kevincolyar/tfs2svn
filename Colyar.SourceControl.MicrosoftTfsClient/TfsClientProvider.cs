@@ -189,13 +189,21 @@ namespace Colyar.SourceControl.MicrosoftTfsClient
             // Rename file.
             else if ((change.ChangeType & ChangeType.Rename) == ChangeType.Rename)
             {
-                RenameFile(changeset, change);
-
-                //"Edit, Rename" is possible and should be handled 
-                if ((change.ChangeType & ChangeType.Edit) == ChangeType.Edit)
-                    EditFile(changeset, change);
+            	if ((change.ChangeType & ChangeType.Delete) == ChangeType.Delete)
+                {
+                    // "Delete, Rename" is possible and should be handled
+                    DeleteFile(changeset, change);
+                }
+                else
+                {
+	            RenameFile(changeset, change);
+	
+	            //"Edit, Rename" is possible and should be handled 
+	            if ((change.ChangeType & ChangeType.Edit) == ChangeType.Edit)
+	                EditFile(changeset, change);
+                }
             }
-
+            
             // Branch file.
             else if ((change.ChangeType & ChangeType.Branch) == ChangeType.Branch)
                 BranchFile(changeset, change);
