@@ -145,7 +145,7 @@ namespace Colyar.SourceControl.Subversion
 
             log.Info("Adding: " + directory);
             Directory.CreateDirectory(directory);
-            RunSvnCommand("add --force \"" + this._workingCopyPath + "\"");
+            RunSvnCommand("add --force \"" + directory + "\"");
             Commit("Adding missing directory", "tfs2svn", DateTime.Today, 0);
         }
         private void SetCommitAuthorAndDate(DateTime commitDate, string committer)
